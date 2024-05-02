@@ -1,0 +1,14 @@
+"0","```r
+trans_fat <- menu %>%
+  select(Category,
+         Trans.Fat) %>%
+  group_by(Category)
+
+trans_plot <- trans_fat %>% 
+  ggplot(aes(Trans.Fat,
+             Category,
+             fill = Category)) + 
+  geom_boxplot() + theme_classic() +  ggtitle(\"Menu Categories grouped by trans_fat content\")
+
+trans_plot
+```"

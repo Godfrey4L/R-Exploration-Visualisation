@@ -1,0 +1,24 @@
+"0","```r
+min_pro <- menu %>% 
+  select(Item,Protein) %>%  
+  group_by(Item, Protein) %>% 
+  filter(Protein >0 )%>% 
+  arrange(Protein) %>% 
+  head(15)  %>% 
+  ggplot(aes(x= reorder(Item, 
+                        Protein),
+             fill = Item)) + 
+  geom_bar(stat = \"identity\",
+           aes(y= Protein )) +
+  coord_flip() +
+  theme_bw()+ 
+  geom_text(aes(label = Protein, 
+                y= Protein),
+            position = position_stack(vjust = 0.5),
+            color = \"Black\",
+            size = 3)+
+  ggtitle(\"TOP 10 McDonald's Menu Item with the Least Protein\")+
+  theme(legend.position=\"none\")
+
+min_pro
+```"

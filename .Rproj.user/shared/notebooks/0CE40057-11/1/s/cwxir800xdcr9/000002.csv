@@ -1,0 +1,18 @@
+"0","```r
+min_sugar <- sugar %>% 
+  filter(Sugars>0) %>% 
+  arrange(Sugars) %>% 
+  head(10) %>% 
+  ggplot(aes(Sugars, 
+             y=reorder(Item,
+                       Sugars),
+             fill = Sugars)) +
+  geom_col() + 
+  theme_classic()+
+  theme(legend.position = \"none\") + 
+  geom_text(aes(label = Sugars),
+            position = position_stack(vjust = 0.5)) + ggtitle(\"Top 10 Menu items with the Lowest sugar Content\")
+
+
+min_sugar
+```"

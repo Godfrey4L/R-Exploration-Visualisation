@@ -1,0 +1,14 @@
+"0","```r
+calories <- menu %>%
+  select(Calories,
+         Carbohydrates, 
+         Protein,
+         Total.Fat) %>% 
+  group_by(Calories)
+
+calories_plot <- ggcorr(calories,
+       method =  c(\"everything\", \"pearson\"),
+       label = TRUE)  + theme_classic() +  ggtitle(\"How Protein,Carbohydrates and Fat contribute to Calories?\")
+
+calories_plot
+```"

@@ -1,0 +1,19 @@
+"0","```r
+cal <- menu %>% 
+  select(Category,
+         Item,
+         Calories) %>% 
+  group_by(Category)  
+
+
+
+cal_plot <- cal %>% 
+  ggplot(aes(Calories,
+             Category,
+             fill = Category)) + 
+  geom_boxplot() + 
+  theme_classic() + 
+  scale_fill_brewer(palette = \"Set1\") + ggtitle(\"Calorie Content per Menu Category\")
+
+cal_plot
+```"

@@ -1,0 +1,15 @@
+"0","```r
+carb <- menu %>% 
+  select(Category,
+         Item,
+         Carbohydrates)%>% 
+  group_by(Category) 
+
+carb_plot<- carb %>%
+  ggplot(aes(Category,Carbohydrates, 
+             fill = Category)) + 
+  geom_boxplot() +
+  scale_fill_brewer(palette = \"Set1\") + coord_flip() + theme_classic() + ggtitle(\"Menu Category with the Highest Carbohydrates Content\")
+
+carb_plot
+```"
