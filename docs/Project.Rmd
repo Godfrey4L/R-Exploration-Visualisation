@@ -10,6 +10,7 @@ output:
  
   html_notebook: default
 ---
+
 The EDA (Exploratory Data Analysis) on McDonald's data revealed insights into customers purchasing patterns, and menu preferences. It provides valuable information for customers to make decisions on their dietary wants and also valuable information for strategic decision-making and targeted marketing efforts.
 
 You can download the [dataset here](https://www.kaggle.com/datasets/mcdonalds/nutrition-facts/data)
