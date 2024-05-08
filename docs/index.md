@@ -1,12 +1,18 @@
-McDonalds Nutritional Analysis
+McDonald’s EDA
 ================
 
-This Report shows the
+The EDA (Exploratory Data Analysis) on McDonald’s data revealed insights
+into customers purchasing patterns, and menu preferences. It provides
+valuable information for customers to make decisions on their dietary
+wants and also valuable information for strategic decision-making and
+targeted marketing efforts.
 
-Download the[dataset
+You can download the [dataset
 here](https://www.kaggle.com/datasets/mcdonalds/nutrition-facts/data)
 
-*Load the Packages for data manipulation and visualization*
+# Packages
+
+***Load the Packages for data manipulation and visualization***
 
 ``` r
 library(dplyr)
@@ -46,15 +52,24 @@ library(GGally)
     ##   method from   
     ##   +.gg   ggplot2
 
-**Read in the data**
+------------------------------------------------------------------------
+
+*Read in the data*
+
+------------------------------------------------------------------------
 
 ``` r
 menu <- read.csv("menu.csv")
 ```
 
-**How many Menu’s do each Category have?**
+### Category
 
-*This gives a quick glance at the data before we begin exploration*
+------------------------------------------------------------------------
+
+The Menu Category is grouped according to the total number food items in
+each Category.
+
+------------------------------------------------------------------------
 
 ``` r
 cat <- menu %>% 
@@ -84,11 +99,24 @@ cat_plot
 #Coffee & Tea offers a lot a variation on the menu
 ```
 
-**Average Protein Content in the Menu Category**
+# Protein
+
+------------------------------------------------------------------------
+
+Proteins are made up of chemical ‘building blocks’ called amino acids.
+Your body uses amino acids to build and repair muscles and bones and to
+make hormones and enzymes. They can also be used as an energy source.
+
+------------------------------------------------------------------------
+
+### The Average Protein Content in the Menu Category
 
 ``` r
-Pro_avg <- menu %>% select(Category,Item,Protein) %>% group_by(Category) %>%
-  aggregate(Protein~Category, FUN = mean)
+Pro_avg <- menu %>% 
+  select(Category,Item,Protein) %>% 
+  group_by(Category) %>%
+  aggregate(Protein~Category, 
+            FUN = mean)
 
 Pro_avg
 ```
@@ -105,7 +133,7 @@ Pro_avg
 #Chicken & Fish, Beef & pork contain higher protein content in every menu item
 ```
 
-**What Menu item contains the highest amount of Protein content?**
+### The Menu item that contains the highest amount of Protein content
 
 ``` r
 max_pro <- menu %>% 
@@ -137,7 +165,7 @@ max_pro
 #Chicken McNuggents(40 pieces) tops the chart for meals with the highest protein content.
 ```
 
-**What Menu item contains the least amount of Protein content?**
+### What Menu item that contains the least amount of Protein content
 
 ``` r
 min_pro <- menu %>% 
@@ -170,7 +198,19 @@ min_pro
 #The protein levels in this category are very low.
 ```
 
-**How do the Menu category’s rank in order of Calories?**
+# Calories
+
+------------------------------------------------------------------------
+
+A calorie is a measure of energy. Foods have calories. That is, foods
+supply the body with energy, which is released when foods are broken
+down during digestion. Energy enables cells to do all of their
+functions, including building proteins and other substances needed by
+the body. The energy can be used immediately or stored for use later.
+
+------------------------------------------------------------------------
+
+### How do the Menu category’s rank in order of Calories
 
 ``` r
 cal <- menu %>% 
@@ -198,7 +238,7 @@ cal_plot
 #Smoothies & Shakes are going to give you the energy you need!!!
 ```
 
-**Top 10 Menu Food items with High calories**
+### The Top 10 Menu Food items with High calories Content
 
 ``` r
 max_cal <- menu %>% 
@@ -228,7 +268,7 @@ max_cal
 #Proteinous and Energy packed? Power to the McNuggets(40 pieces) !!!
 ```
 
-**Top 10 Menu Food items with Low calories**
+### The Top 10 Menu Food items with Low calories Content
 
 ``` r
 min_cal <- menu %>%
@@ -260,7 +300,17 @@ min_cal
 #That's not a lot energy  but it's energy nonetheless.
 ```
 
-**Menu Category with the Highest Carbohydrates Content**
+# Carboydrates
+
+------------------------------------------------------------------------
+
+Carbohydrates, or carbs, are the sugars, starches, and dietary fiber
+that occur in certain foods. The body breaks them down into glucose,
+which provides energy.
+
+------------------------------------------------------------------------
+
+### The Menu Category with the Highest Carbohydrates Content
 
 ``` r
 carb <- menu %>% 
@@ -284,7 +334,17 @@ carb_plot
 # Carbohydrates supply your body with glucose, which your cells use as fuel. Certain complex carbohydrates, like fiber, also feed your gut microbiome.
 ```
 
-**Top 10 Menu Food items with High Sugar Content**
+## Sugar
+
+------------------------------------------------------------------------
+
+Sugar also called simple carboydrates occur naturally in foods, such as
+dairy products, as well as added sugar, which are common in baked goods,
+sweets, and desserts. The body very easily digests and absorbs sugar.
+
+------------------------------------------------------------------------
+
+### The Top 10 Menu Food items with High Sugar Content
 
 ``` r
 sugar <- menu %>%
@@ -314,7 +374,7 @@ max_sugar
 #Smoothies & Shakes come out the cream of crop in this category.
 ```
 
-**Top 10 Menu Food items with Low Sugar Content**
+### The Top 10 Menu Food items with Low Sugar Content
 
 ``` r
 min_sugar <- sugar %>% 
@@ -341,8 +401,14 @@ min_sugar
 #Apparently chicken isn't sweet but tasty. Oh well better luck next time Mr. McNuggets!
 ```
 
-**Menu Categories with Carbohydrates that contain a higher Fibre to
-Sugar Ratio**
+### The Menu Categories with Carbohydrates that contain a higher Fibre to Sugar Ratio(Healthy Carbs)
+
+------------------------------------------------------------------------
+
+As a general rule, the more fiber and the less sugar there is in the
+carbohydrate, the better it is for your body.
+
+------------------------------------------------------------------------
 
 ``` r
 healthy_carbs <-  menu %>% 
@@ -365,11 +431,19 @@ healthy_carbs_plot
 
 ![](index_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
-``` r
-#As a general rule, the more fiber and the less sugar there is in the carbohydrate, the better it is for your body.
-```
+### The Menu Categories grouped by sodium content
 
-**Menu Categories grouped by sodium content**
+------------------------------------------------------------------------
+
+Our bodies need sodium; however, there is so much in most processed
+foods, and too much sodium can have several negative effects. Canned
+foods are notorious for having lots of sodium, as are bottled sauces,
+salty snacks, and processed foods. Most nutritionists recommend watching
+your sodium intake carefully because too much sodium in your diet is
+dangerous. It can lead to high blood pressure and many related health
+conditions.
+
+------------------------------------------------------------------------
 
 ``` r
 sodium  <- menu %>%
@@ -391,11 +465,16 @@ sodium_plot
 
 ![](index_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
-``` r
-# Our bodies need sodium; however, there is so much in most processed foods, and too much sodium can have several negative effects. Canned foods are notorious for having lots of sodium, as are bottled sauces, salty snacks, and processed foods. Most nutritionists recommend watching your sodium intake carefully because too much sodium in your diet is dangerous. It can lead to high blood pressure and many related health conditions.
-```
+### The Menu Categories grouped by Trans Fat
 
-**Menu Categories grouped by Trans Fat**
+------------------------------------------------------------------------
+
+In the United States, the main dietary source of trans fats is partially
+hydrogenated vegetable oils, previously used in many commercially
+prepared foods. Consuming trans fats may adversely affect cholesterol
+levels in the body and may contribute to the risk of atherosclerosis.
+Because of this, the US Food and Drug Administration (FDA) has banned
+the use of trans fats in prepared foods.
 
 ``` r
 trans_fat <- menu %>%
@@ -414,11 +493,13 @@ trans_plot
 
 ![](index_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
-``` r
-# In the United States, the main dietary source of trans fats is partially hydrogenated vegetable oils, previously used in many commercially prepared foods. Consuming trans fats may adversely affect cholesterol levels in the body and may contribute to the risk of atherosclerosis. Because of this, the US Food and Drug Administration (FDA) has banned the use of trans fats in prepared foods.
-```
+### The Correlation between Protein,Carbohydrates, Fat and Calories
 
-**By how much do Protein,Carbohydrates and Fat affect the Calories?**
+------------------------------------------------------------------------
+
+Fats are the slowest source of energy but the most energy-efficient form
+of food.Because fats are such an efficient form of energy, the body
+stores any excess energy as fat.
 
 ``` r
 calories <- menu %>%
@@ -436,9 +517,5 @@ calories_plot
 ```
 
 ![](index_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
-
-``` r
-#Fats are the slowest source of energy but the most energy-efficient form of food.Because fats are such an efficient form of energy, the body stores any excess energy as fat
-```
 
 in

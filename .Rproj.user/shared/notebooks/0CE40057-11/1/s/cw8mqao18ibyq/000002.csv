@@ -1,6 +1,0 @@
-"0","```r
-Pro_avg <- menu %>% select(Category,Item,Protein) %>% group_by(Category) %>%
-  aggregate(Protein~Category, FUN = mean)
-
-Pro_avg
-```"

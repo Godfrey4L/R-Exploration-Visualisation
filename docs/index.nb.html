@@ -11,7 +11,7 @@
 
 
 
-<title>McDonalds Nutritional Analysis</title>
+<title>McDonald’s EDA</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1746,27 +1746,66 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">McDonalds Nutritional Analysis</h1>
+<h1 class="title toc-ignore">McDonald’s EDA</h1>
 
 </div>
 
 
 <!-- rnb-text-begin -->
-<p>This Report shows the</p>
-<p>Download the<a href="https://www.kaggle.com/datasets/mcdonalds/nutrition-facts/data">dataset
+<p>The (Exploratory Data Analysis) on McDonald’s data revealed insights
+into customers purchasing patterns, and menu preferences. It provides
+valuable information for customers to make decisions on their dietary
+wants and also valuable information for strategic decision-making and
+targeted marketing efforts.</p>
+<p>You can download the <a href="https://www.kaggle.com/datasets/mcdonalds/nutrition-facts/data">dataset
 here</a></p>
+<div id="packages" class="section level1">
+<h1>Packages</h1>
 <p><em>Load the Packages for data manipulation and
 visualization</em></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmxpYnJhcnkodGlkeXZlcnNlKVxubGlicmFyeShHR2FsbHkpXG5gYGAifQ== -->
-<pre class="r"><code>library(dplyr)
-library(tidyverse)
-library(GGally)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<pre class="r"><code>library(dplyr)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
+<pre><code>
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHJlYWRyICAgICAyLjEuNVxu4pyUIGdncGxvdDIgICAzLjUuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuMyAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIHB1cnJyICAgICAxLjAuMiAgICAg4pyUIHRpZHlyICAgICAxLjMuMeKUgOKUgCBDb25mbGljdHMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAIHRpZHl2ZXJzZV9jb25mbGljdHMoKSDilIDilIBcbuKcliBkcGx5cjo6ZmlsdGVyKCkgbWFza3Mgc3RhdHM6OmZpbHRlcigpXG7inJYgZHBseXI6OmxhZygpICAgIG1hc2tzIHN0YXRzOjpsYWcoKVxu4oS5IFVzZSB0aGUgXHUwMDFiXTg7O2h0dHA6Ly9jb25mbGljdGVkLnItbGliLm9yZy9cdTAwMDdjb25mbGljdGVkIHBhY2thZ2VcdTAwMWJdODs7XHUwMDA3IHRvIGZvcmNlIGFsbCBjb25mbGljdHMgdG8gYmVjb21lIGVycm9yc1xuIn0= -->
+<pre><code>── Attaching core tidyverse packages ─────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ readr     2.1.5
+✔ ggplot2   3.5.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.3     ✔ tibble    3.2.1
+✔ purrr     1.0.2     ✔ tidyr     1.3.1── Conflicts ───────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShHR2FsbHkpXG5gYGAifQ== -->
+<pre class="r"><code>library(GGally)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ0dHYWxseSc6XG4gIG1ldGhvZCBmcm9tICAgXG4gICsuZ2cgICBnZ3Bsb3QyXG4ifQ== -->
+<pre><code>Registered S3 method overwritten by &#39;GGally&#39;:
+  method from   
+  +.gg   ggplot2</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Read in the data</strong></p>
+<hr />
+<p><em>Read in the data</em></p>
+<hr />
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2V0d2QoKVxuXG5gYGAifQ== -->
@@ -1778,12 +1817,15 @@ library(GGally)</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>How many Menu’s do each Category have?</strong></p>
-<p><em>This gives a quick glance at the data before we begin
-exploration</em></p>
+<div id="category" class="section level3">
+<h3>Category</h3>
+<hr />
+<p>The Menu Category is grouped according to the total number food items
+in each Category.</p>
+<hr />
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0IDwtIG1lbnUgJT4lIFxuICBzZWxlY3QoQ2F0ZWdvcnkpICU+JSBcbiAgY291bnQoQ2F0ZWdvcnksbmFtZSA9IFwiVG90YWxcIikgICU+JSBcbiAgZGlzdGluY3QoKVxuXG5jYXRfcGxvdCA8LSBjYXQgJT4lIFxuICBnZ3Bsb3QoYWVzKENhdGVnb3J5LFxuICAgICAgICAgICAgIFRvdGFsLFxuICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsgXG4gIGdlb21fY29sKCkgKyBcbiAgdGhlbWVfY2xhc3NpYygpICsgXG4gIGxhYnModGl0bGUgPSBcIlRvdGFsIENhdGVnb3JpZXNcIikgKyBcbiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gXCJub25lXCIpICsgXG4gIGdlb21fdGV4dChhZXMobGFiZWwgPSBUb3RhbCksIFxuICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSksXG4gICAgICAgICAgICBjb2xvciA9XCJibGFja1wiLCBzaXplID0gMykgKyBjb29yZF9mbGlwKClcblxuXG5jYXRfcGxvdFxuXG4jQ29mZmVlICYgVGVhIG9mZmVycyBhIGxvdCBhIHZhcmlhdGlvbiBvbiB0aGUgbWVudVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0IDwtIG1lbnUgJT4lIFxuICBzZWxlY3QoQ2F0ZWdvcnkpICU+JSBcbiAgY291bnQoQ2F0ZWdvcnksbmFtZSA9IFwiVG90YWxcIikgICU+JSBcbiAgZGlzdGluY3QoKVxuXG5jYXRfcGxvdCA8LSBjYXQgJT4lIFxuICBnZ3Bsb3QoYWVzKENhdGVnb3J5LFxuICAgICAgICAgICAgIFRvdGFsLFxuICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsgXG4gIGdlb21fY29sKCkgKyBcbiAgdGhlbWVfY2xhc3NpYygpICsgXG4gIGxhYnModGl0bGUgPSBcIlRvdGFsIENhdGVnb3JpZXNcIikgKyBcbiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gXCJub25lXCIpICsgXG4gIGdlb21fdGV4dChhZXMobGFiZWwgPSBUb3RhbCksIFxuICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSksXG4gICAgICAgICAgICBjb2xvciA9XCJibGFja1wiLCBzaXplID0gMykgKyBjb29yZF9mbGlwKClcblxuXG5jYXRfcGxvdFxuXG5cblxuYGBgIn0= -->
 <pre class="r"><code>cat &lt;- menu %&gt;% 
   select(Category) %&gt;% 
   count(Category,name = &quot;Total&quot;)  %&gt;% 
@@ -1803,31 +1845,54 @@ cat_plot &lt;- cat %&gt;%
 
 
 cat_plot
-
-#Coffee &amp; Tea offers a lot a variation on the menu
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Average Protein Content in the Menu Category</strong></p>
+</div>
+</div>
+<div id="protein" class="section level1">
+<h1>Protein</h1>
+<hr />
+<p>Proteins are made up of chemical ‘building blocks’ called amino
+acids. Your body uses amino acids to build and repair muscles and bones
+and to make hormones and enzymes. They can also be used as an energy
+source.</p>
+<hr />
+<div id="the-average-protein-content-in-the-menu-category" class="section level3">
+<h3>The Average Protein Content in the Menu Category</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUHJvX2F2ZyA8LSBtZW51ICU+JSBzZWxlY3QoQ2F0ZWdvcnksSXRlbSxQcm90ZWluKSAlPiUgZ3JvdXBfYnkoQ2F0ZWdvcnkpICU+JVxuICBhZ2dyZWdhdGUoUHJvdGVpbn5DYXRlZ29yeSwgRlVOID0gbWVhbilcblxuUHJvX2F2Z1xuXG5cbiNDaGlja2VuICYgRmlzaCwgQmVlZiAmIHBvcmsgY29udGFpbiBoaWdoZXIgcHJvdGVpbiBjb250ZW50IGluIGV2ZXJ5IG1lbnUgaXRlbVxuYGBgIn0= -->
-<pre class="r"><code>Pro_avg &lt;- menu %&gt;% select(Category,Item,Protein) %&gt;% group_by(Category) %&gt;%
-  aggregate(Protein~Category, FUN = mean)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUHJvX2F2ZyA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KENhdGVnb3J5LEl0ZW0sUHJvdGVpbikgJT4lIFxuICBncm91cF9ieShDYXRlZ29yeSkgJT4lXG4gIGFnZ3JlZ2F0ZShQcm90ZWlufkNhdGVnb3J5LCBcbiAgICAgICAgICAgIEZVTiA9IG1lYW4pXG5cblByb19hdmdcbmBgYCJ9 -->
+<pre class="r"><code>Pro_avg &lt;- menu %&gt;% 
+  select(Category,Item,Protein) %&gt;% 
+  group_by(Category) %&gt;%
+  aggregate(Protein~Category, 
+            FUN = mean)
 
-Pro_avg
-
+Pro_avg</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6OSwibmNvbCI6Miwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbOSDDlyAyXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMlN2VTdETUJESDNhWXRKRkNvWUdVb0EyenRVZ1lraEloYTFCRVFBUW1KeVNTWEprcHFGOGZsWStOTmVJc2lkaVJlQUNZMlppUW1WdUNjMkFqRlN1UzduLzMzbmU5OHZIL1djODRjUW9oRmFwWkZyRHFhcEg1Nk11eHNFMUtyb2xNaE5XS3IrUVkzcmFLaFlBdC9XeThzOUFIQzltYjdpSXRFSTdzUFZ5RG9DTEkvSUlBbUljMmtCa3VES1BZVFlLZ2J4bG1rNmVLQWh5RUF3aE9nbXMzdlE1YUJrT2FvaGtkVEdoaHZ4UnR6THFNWU1oUjVFVTMrUWk1NWpQcEpqdU1BS1JLVmlMdHptbys5cjJKMmUyL2oyZHY0d2QxZHUzekd6MTEvL0h4NVA3OTMxUlZ4dUwzWFl0L0dURzFrYnZ2cDQrRHA0N0JVblRxajR6eElLNitRVG4xQUpZeTR1TlgrM0pIZ0VtSlcwdHFDWDNlTnZxbjBkMFZzdXh6RVQybG1naGpvQkZUU2JpaFFqOTUzU1RMSEp6TG1ERVZWMWJ0R1NWd1JKYkE4WlNxVG9PTkhVNVowdGtyTDFvU05WTXdjRmFPcGJmdWZYUzJ5cVA1b2VjUDBEdGdvWm1DdWs5SUxTTTNKQVZ5WnptRTk4bkowSnlKbTVzVTRTTE91NUpJYWllUHoxSkQ4NXVUN0YzOFNwbFRRQWdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Category"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Protein"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Beef & Pork","2":"27.333333"},{"1":"Beverages","2":"1.333333"},{"1":"Breakfast","2":"19.857143"},{"1":"Chicken & Fish","2":"29.111111"},{"1":"Coffee & Tea","2":"8.863158"},{"1":"Desserts","2":"4.000000"},{"1":"Salads","2":"19.833333"},{"1":"Smoothies & Shakes","2":"10.857143"},{"1":"Snacks & Sides","2":"8.384615"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[9]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5cbiNDaGlja2VuICYgRmlzaCwgQmVlZiAmIHBvcmsgY29udGFpbiBoaWdoZXIgcHJvdGVpbiBjb250ZW50IGluIGV2ZXJ5IG1lbnUgaXRlbVxuYGBgIn0= -->
+<pre class="r"><code>
 
 #Chicken &amp; Fish, Beef &amp; pork contain higher protein content in every menu item</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>What Menu item contains the highest amount of Protein
-content?</strong></p>
+</div>
+<div id="the-menu-item-that-contains-the-highest-amount-of-protein-content" class="section level3">
+<h3>The Menu item that contains the highest amount of Protein
+content</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF4X3BybyA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KEl0ZW0sUHJvdGVpbikgJT4lICBcbiAgZ3JvdXBfYnkoSXRlbSkgJT4lIFxuICBhcnJhbmdlKGRlc2MoUHJvdGVpbikpICU+JSBcbiAgaGVhZCgxNSkgJT4lIFxuICBnZ3Bsb3QoYWVzKHg9IHJlb3JkZXIoSXRlbSwgXG4gICAgICAgICAgICAgICAgICAgICAgICBQcm90ZWluKSxcbiAgICAgICAgICAgICBmaWxsID0gSXRlbSkpICsgXG4gIGdlb21fYmFyKHN0YXQgPSBcImlkZW50aXR5XCIsXG4gICAgICAgICAgIGFlcyh5PSBQcm90ZWluICkpICtcbiAgY29vcmRfZmxpcCgpICtcbiAgdGhlbWVfYncoKSsgXG4gIGdlb21fdGV4dChhZXMobGFiZWwgPSBQcm90ZWluLCBcbiAgICAgICAgICAgICAgICB5PSBQcm90ZWluKSxcbiAgICAgICAgICAgIHBvc2l0aW9uID0gcG9zaXRpb25fc3RhY2sodmp1c3QgPSAwLjUpLFxuICAgICAgICAgICAgY29sb3IgPSBcIkJsYWNrXCIsXG4gICAgICAgICAgICBzaXplID0gMykrXG4gIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbj1cIm5vbmVcIikgK1xuICBnZ3RpdGxlKFwiVE9QIDE1IE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggdGhlIEhpZ2hlc3QgUHJvdGVpbiBDb250ZW50XCIpICt0aGVtZShwYW5lbC5ncmlkLm1ham9yID0gZWxlbWVudF9ibGFuaygpLCBwYW5lbC5ncmlkLm1pbm9yID0gZWxlbWVudF9ibGFuaygpKVxuXG5tYXhfcHJvXG5cbiNDaGlja2VuIE1jTnVnZ2VudHMoNDAgcGllY2VzKSB0b3BzIHRoZSBjaGFydCBmb3IgbWVhbHMgd2l0aCB0aGUgaGlnaGVzdCBwcm90ZWluIGNvbnRlbnQuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF4X3BybyA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KEl0ZW0sUHJvdGVpbikgJT4lICBcbiAgZ3JvdXBfYnkoSXRlbSkgJT4lIFxuICBhcnJhbmdlKGRlc2MoUHJvdGVpbikpICU+JSBcbiAgaGVhZCgxNSkgJT4lIFxuICBnZ3Bsb3QoYWVzKHg9IHJlb3JkZXIoSXRlbSwgXG4gICAgICAgICAgICAgICAgICAgICAgICBQcm90ZWluKSxcbiAgICAgICAgICAgICBmaWxsID0gSXRlbSkpICsgXG4gIGdlb21fYmFyKHN0YXQgPSBcImlkZW50aXR5XCIsXG4gICAgICAgICAgIGFlcyh5PSBQcm90ZWluICkpICtcbiAgY29vcmRfZmxpcCgpICtcbiAgdGhlbWVfYncoKSsgXG4gIGdlb21fdGV4dChhZXMobGFiZWwgPSBQcm90ZWluLCBcbiAgICAgICAgICAgICAgICB5PSBQcm90ZWluKSxcbiAgICAgICAgICAgIHBvc2l0aW9uID0gcG9zaXRpb25fc3RhY2sodmp1c3QgPSAwLjUpLFxuICAgICAgICAgICAgY29sb3IgPSBcIkJsYWNrXCIsXG4gICAgICAgICAgICBzaXplID0gMykrXG4gIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbj1cIm5vbmVcIikgK1xuICBnZ3RpdGxlKFwiVE9QIDE1IE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggdGhlIEhpZ2hlc3QgUHJvdGVpbiBDb250ZW50XCIpICt0aGVtZShwYW5lbC5ncmlkLm1ham9yID0gZWxlbWVudF9ibGFuaygpLCBwYW5lbC5ncmlkLm1pbm9yID0gZWxlbWVudF9ibGFuaygpKVxuXG5tYXhfcHJvXG5cblxuYGBgIn0= -->
 <pre class="r"><code>max_pro &lt;- menu %&gt;% 
   select(Item,Protein) %&gt;%  
   group_by(Item) %&gt;% 
@@ -1849,16 +1914,17 @@ content?</strong></p>
   ggtitle(&quot;TOP 15 McDonald&#39;s Menu Item with the Highest Protein Content&quot;) +theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 max_pro
-
-#Chicken McNuggents(40 pieces) tops the chart for meals with the highest protein content.</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>What Menu item contains the least amount of Protein
-content?</strong></p>
+</div>
+<div id="what-menu-item-that-contains-the-least-amount-of-protein-content" class="section level3">
+<h3>What Menu item that contains the least amount of Protein
+content</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWluX3BybyA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KEl0ZW0sUHJvdGVpbikgJT4lICBcbiAgZ3JvdXBfYnkoSXRlbSwgUHJvdGVpbikgJT4lIFxuICBmaWx0ZXIoUHJvdGVpbiA+MCApJT4lIFxuICBhcnJhbmdlKFByb3RlaW4pICU+JSBcbiAgaGVhZCgxNSkgICU+JSBcbiAgZ2dwbG90KGFlcyh4PSByZW9yZGVyKEl0ZW0sIFxuICAgICAgICAgICAgICAgICAgICAgICAgUHJvdGVpbiksXG4gICAgICAgICAgICAgZmlsbCA9IEl0ZW0pKSArIFxuICBnZW9tX2JhcihzdGF0ID0gXCJpZGVudGl0eVwiLFxuICAgICAgICAgICBhZXMoeT0gUHJvdGVpbiApKSArXG4gIGNvb3JkX2ZsaXAoKSArXG4gIHRoZW1lX2J3KCkrIFxuICBnZW9tX3RleHQoYWVzKGxhYmVsID0gUHJvdGVpbiwgXG4gICAgICAgICAgICAgICAgeT0gUHJvdGVpbiksXG4gICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSxcbiAgICAgICAgICAgIGNvbG9yID0gXCJCbGFja1wiLFxuICAgICAgICAgICAgc2l6ZSA9IDMpK1xuICBnZ3RpdGxlKFwiVE9QIDEwIE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggdGhlIExlYXN0IFByb3RlaW5cIikrXG4gIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbj1cIm5vbmVcIilcblxubWluX3Byb1xuXG4jVGhlIHByb3RlaW4gbGV2ZWxzIGluIHRoaXMgY2F0ZWdvcnkgYXJlIHZlcnkgbG93LlxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWluX3BybyA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KEl0ZW0sUHJvdGVpbikgJT4lICBcbiAgZ3JvdXBfYnkoSXRlbSwgUHJvdGVpbikgJT4lIFxuICBmaWx0ZXIoUHJvdGVpbiA+MCApJT4lIFxuICBhcnJhbmdlKFByb3RlaW4pICU+JSBcbiAgaGVhZCgxNSkgICU+JSBcbiAgZ2dwbG90KGFlcyh4PSByZW9yZGVyKEl0ZW0sIFxuICAgICAgICAgICAgICAgICAgICAgICAgUHJvdGVpbiksXG4gICAgICAgICAgICAgZmlsbCA9IEl0ZW0pKSArIFxuICBnZW9tX2JhcihzdGF0ID0gXCJpZGVudGl0eVwiLFxuICAgICAgICAgICBhZXMoeT0gUHJvdGVpbiApKSArXG4gIGNvb3JkX2ZsaXAoKSArXG4gIHRoZW1lX2J3KCkrIFxuICBnZW9tX3RleHQoYWVzKGxhYmVsID0gUHJvdGVpbiwgXG4gICAgICAgICAgICAgICAgeT0gUHJvdGVpbiksXG4gICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSxcbiAgICAgICAgICAgIGNvbG9yID0gXCJCbGFja1wiLFxuICAgICAgICAgICAgc2l6ZSA9IDMpK1xuICBnZ3RpdGxlKFwiVE9QIDEwIE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggdGhlIExlYXN0IFByb3RlaW5cIikrXG4gIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbj1cIm5vbmVcIilcblxubWluX3Byb1xuXG5cbmBgYCJ9 -->
 <pre class="r"><code>min_pro &lt;- menu %&gt;% 
   select(Item,Protein) %&gt;%  
   group_by(Item, Protein) %&gt;% 
@@ -1881,16 +1947,27 @@ content?</strong></p>
   theme(legend.position=&quot;none&quot;)
 
 min_pro
-
-#The protein levels in this category are very low.</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>How do the Menu category’s rank in order of
-Calories?</strong></p>
+</div>
+</div>
+<div id="calories" class="section level1">
+<h1>Calories</h1>
+<hr />
+<p>A calorie is a measure of energy. Foods have calories. That is, foods
+supply the body with energy, which is released when foods are broken
+down during digestion. Energy enables cells to do all of their
+functions, including building proteins and other substances needed by
+the body. The energy can be used immediately or stored for use
+later.</p>
+<hr />
+<div id="the-menu-category-ranked-according-to-their-calorie-content" class="section level3">
+<h3>The Menu Category ranked according to their Calorie Content</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FsIDwtIG1lbnUgJT4lIFxuICBzZWxlY3QoQ2F0ZWdvcnksXG4gICAgICAgICBJdGVtLFxuICAgICAgICAgQ2Fsb3JpZXMpICU+JSBcbiAgZ3JvdXBfYnkoQ2F0ZWdvcnkpICBcblxuXG5cbmNhbF9wbG90IDwtIGNhbCAlPiUgXG4gIGdncGxvdChhZXMoQ2Fsb3JpZXMsXG4gICAgICAgICAgICAgQ2F0ZWdvcnksXG4gICAgICAgICAgICAgZmlsbCA9IENhdGVnb3J5KSkgKyBcbiAgZ2VvbV9ib3hwbG90KCkgKyBcbiAgdGhlbWVfY2xhc3NpYygpICsgXG4gIHNjYWxlX2ZpbGxfYnJld2VyKHBhbGV0dGUgPSBcIlNldDFcIikgKyBnZ3RpdGxlKFwiQ2Fsb3JpZSBDb250ZW50IHBlciBNZW51IENhdGVnb3J5XCIpXG5cbmNhbF9wbG90XG5cbiNTbW9vdGhpZXMgJiBTaGFrZXMgYXJlIGdvaW5nIHRvIGdpdmUgeW91IHRoZSBlbmVyZ3kgeW91IG5lZWQhISFcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FsIDwtIG1lbnUgJT4lIFxuICBzZWxlY3QoQ2F0ZWdvcnksXG4gICAgICAgICBJdGVtLFxuICAgICAgICAgQ2Fsb3JpZXMpICU+JSBcbiAgZ3JvdXBfYnkoQ2F0ZWdvcnkpICBcblxuXG5cbmNhbF9wbG90IDwtIGNhbCAlPiUgXG4gIGdncGxvdChhZXMoQ2Fsb3JpZXMsXG4gICAgICAgICAgICAgQ2F0ZWdvcnksXG4gICAgICAgICAgICAgZmlsbCA9IENhdGVnb3J5KSkgKyBcbiAgZ2VvbV9ib3hwbG90KCkgKyBcbiAgdGhlbWVfY2xhc3NpYygpICsgXG4gIHNjYWxlX2ZpbGxfYnJld2VyKHBhbGV0dGUgPSBcIlNldDFcIikgKyBnZ3RpdGxlKFwiQ2Fsb3JpZSBDb250ZW50IHBlciBNZW51IENhdGVnb3J5XCIpXG5cbmNhbF9wbG90XG5cblxuYGBgIn0= -->
 <pre class="r"><code>cal &lt;- menu %&gt;% 
   select(Category,
          Item,
@@ -1908,15 +1985,16 @@ cal_plot &lt;- cal %&gt;%
   scale_fill_brewer(palette = &quot;Set1&quot;) + ggtitle(&quot;Calorie Content per Menu Category&quot;)
 
 cal_plot
-
-#Smoothies &amp; Shakes are going to give you the energy you need!!!</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Top 10 Menu Food items with High calories</strong></p>
+</div>
+<div id="the-top-10-menu-food-items-with-high-calories-content" class="section level3">
+<h3>The Top 10 Menu Food items with High calories Content</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF4X2NhbCA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KENhdGVnb3J5LFxuICAgICAgICAgSXRlbSxcbiAgICAgICAgIENhbG9yaWVzKSAlPiUgXG4gIGdyb3VwX2J5KEl0ZW0pICU+JSBcbiAgYXJyYW5nZShkZXNjKENhbG9yaWVzKSklPiUgXG4gIGhlYWQoMTApJT4lIFxuICBnZ3Bsb3QoYWVzKENhbG9yaWVzLFxuICAgICAgICAgICAgIHkgPSByZW9yZGVyKEl0ZW0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgQ2Fsb3JpZXMpXG4gICAgICAgICAgICAgLGZpbGwgPUl0ZW0pKSArIFxuICBnZW9tX2NvbCgpICtcbiAgdGhlbWVfY2xhc3NpYygpK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSBcIm5vbmVcIikgKyBcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IENhbG9yaWVzKSwgXG4gICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSxcbiAgICAgICAgICAgIGNvbG9yPVwiYmxhY2tcIiwgc2l6ZSA9MykgKyBnZ3RpdGxlKFwiVE9QIDEwIE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggdGhlIEhpZ2hlc3QgQ2Fsb3JpZSBDb250ZW50XCIpXG5cbm1heF9jYWxcblxuI1Byb3RlaW5vdXMgYW5kIEVuZXJneSBwYWNrZWQ/IFBvd2VyIHRvIHRoZSBNY051Z2dldHMoNDAgcGllY2VzKSAhISFcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF4X2NhbCA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KENhdGVnb3J5LFxuICAgICAgICAgSXRlbSxcbiAgICAgICAgIENhbG9yaWVzKSAlPiUgXG4gIGdyb3VwX2J5KEl0ZW0pICU+JSBcbiAgYXJyYW5nZShkZXNjKENhbG9yaWVzKSklPiUgXG4gIGhlYWQoMTApJT4lIFxuICBnZ3Bsb3QoYWVzKENhbG9yaWVzLFxuICAgICAgICAgICAgIHkgPSByZW9yZGVyKEl0ZW0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgQ2Fsb3JpZXMpXG4gICAgICAgICAgICAgLGZpbGwgPUl0ZW0pKSArIFxuICBnZW9tX2NvbCgpICtcbiAgdGhlbWVfY2xhc3NpYygpK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSBcIm5vbmVcIikgKyBcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IENhbG9yaWVzKSwgXG4gICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSxcbiAgICAgICAgICAgIGNvbG9yPVwiYmxhY2tcIiwgc2l6ZSA9MykgKyBnZ3RpdGxlKFwiVE9QIDEwIE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggdGhlIEhpZ2hlc3QgQ2Fsb3JpZSBDb250ZW50XCIpXG5cbm1heF9jYWxcblxuXG5gYGAifQ== -->
 <pre class="r"><code>max_cal &lt;- menu %&gt;% 
   select(Category,
          Item,
@@ -1936,15 +2014,16 @@ cal_plot
             color=&quot;black&quot;, size =3) + ggtitle(&quot;TOP 10 McDonald&#39;s Menu Item with the Highest Calorie Content&quot;)
 
 max_cal
-
-#Proteinous and Energy packed? Power to the McNuggets(40 pieces) !!!</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Top 10 Menu Food items with Low calories</strong></p>
+</div>
+<div id="the-top-10-menu-food-items-with-low-calories-content" class="section level3">
+<h3>The Top 10 Menu Food items with Low calories Content</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWluX2NhbCA8LSBtZW51ICU+JVxuICBzZWxlY3QoQ2F0ZWdvcnksXG4gICAgICAgICBJdGVtLFxuICAgICAgICAgQ2Fsb3JpZXMpJT4lIFxuICBmaWx0ZXIoQ2Fsb3JpZXM+MCkgJT4lIFxuICBncm91cF9ieShJdGVtKSAlPiUgXG4gIGFycmFuZ2UoQ2Fsb3JpZXMpJT4lIFxuICBoZWFkKDEwKSAlPiUgXG4gIGdncGxvdChhZXMoQ2Fsb3JpZXMsXG4gICAgICAgICAgICAgeSA9IHJlb3JkZXIoSXRlbSxcbiAgICAgICAgICAgICAgICAgICAgICAgICBDYWxvcmllcyksXG4gICAgICAgICAgICAgZmlsbCA9SXRlbSkpICsgXG4gIGdlb21fY29sKCkgKyBcbiAgdGhlbWVfY2xhc3NpYygpKyBcbiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gXCJub25lXCIpICsgXG4gIGdlb21fdGV4dChhZXMobGFiZWwgPSBDYWxvcmllcyksIFxuICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSksXG4gICAgICAgICAgICBjb2xvcj1cImJsYWNrXCIsIHNpemUgPTMpICtcbiAgc2NhbGVfZmlsbF9icmV3ZXIocGFsZXR0ZSA9IFwiU2V0M1wiKSArIGdndGl0bGUoXCJUT1AgMTAgTWNEb25hbGQncyBNZW51IEl0ZW0gd2l0aCBMb3cgQ2Fsb3JpZSBDb250ZW50XCIpXG5cbm1pbl9jYWxcblxuI1RoYXQncyBub3QgYSBsb3QgZW5lcmd5ICBidXQgaXQncyBlbmVyZ3kgbm9uZXRoZWxlc3MuXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWluX2NhbCA8LSBtZW51ICU+JVxuICBzZWxlY3QoQ2F0ZWdvcnksXG4gICAgICAgICBJdGVtLFxuICAgICAgICAgQ2Fsb3JpZXMpJT4lIFxuICBmaWx0ZXIoQ2Fsb3JpZXM+MCkgJT4lIFxuICBncm91cF9ieShJdGVtKSAlPiUgXG4gIGFycmFuZ2UoQ2Fsb3JpZXMpJT4lIFxuICBoZWFkKDEwKSAlPiUgXG4gIGdncGxvdChhZXMoQ2Fsb3JpZXMsXG4gICAgICAgICAgICAgeSA9IHJlb3JkZXIoSXRlbSxcbiAgICAgICAgICAgICAgICAgICAgICAgICBDYWxvcmllcyksXG4gICAgICAgICAgICAgZmlsbCA9SXRlbSkpICsgXG4gIGdlb21fY29sKCkgKyBcbiAgdGhlbWVfY2xhc3NpYygpKyBcbiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gXCJub25lXCIpICsgXG4gIGdlb21fdGV4dChhZXMobGFiZWwgPSBDYWxvcmllcyksIFxuICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSksXG4gICAgICAgICAgICBjb2xvcj1cImJsYWNrXCIsIHNpemUgPTMpICtcbiAgc2NhbGVfZmlsbF9icmV3ZXIocGFsZXR0ZSA9IFwiU2V0M1wiKSArIGdndGl0bGUoXCJUT1AgMTAgTWNEb25hbGQncyBNZW51IEl0ZW0gd2l0aCBMb3cgQ2Fsb3JpZSBDb250ZW50XCIpXG5cbm1pbl9jYWxcblxuXG5cbmBgYCJ9 -->
 <pre class="r"><code>min_cal &lt;- menu %&gt;%
   select(Category,
          Item,
@@ -1966,17 +2045,24 @@ max_cal
   scale_fill_brewer(palette = &quot;Set3&quot;) + ggtitle(&quot;TOP 10 McDonald&#39;s Menu Item with Low Calorie Content&quot;)
 
 min_cal
-
-#That&#39;s not a lot energy  but it&#39;s energy nonetheless.
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Menu Category with the Highest Carbohydrates
-Content</strong></p>
+</div>
+</div>
+<div id="carboydrates" class="section level1">
+<h1>Carboydrates</h1>
+<hr />
+<p>Carbohydrates, or carbs, are the sugars, starches, and dietary fiber
+that occur in certain foods. The body breaks them down into glucose,
+which provides energy.</p>
+<hr />
+<div id="the-menu-category-with-the-highest-carbohydrates-content" class="section level3">
+<h3>The Menu Category with the Highest Carbohydrates Content</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FyYiA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KENhdGVnb3J5LFxuICAgICAgICAgSXRlbSxcbiAgICAgICAgIENhcmJvaHlkcmF0ZXMpJT4lIFxuICBncm91cF9ieShDYXRlZ29yeSkgXG5cbmNhcmJfcGxvdDwtIGNhcmIgJT4lXG4gIGdncGxvdChhZXMoQ2F0ZWdvcnksQ2FyYm9oeWRyYXRlcywgXG4gICAgICAgICAgICAgZmlsbCA9IENhdGVnb3J5KSkgKyBcbiAgZ2VvbV9ib3hwbG90KCkgK1xuICBzY2FsZV9maWxsX2JyZXdlcihwYWxldHRlID0gXCJTZXQxXCIpICsgY29vcmRfZmxpcCgpICsgdGhlbWVfY2xhc3NpYygpICsgZ2d0aXRsZShcIk1lbnUgQ2F0ZWdvcnkgd2l0aCB0aGUgSGlnaGVzdCBDYXJib2h5ZHJhdGVzIENvbnRlbnRcIilcblxuY2FyYl9wbG90XG5cbiMgQ2FyYm9oeWRyYXRlcyBzdXBwbHkgeW91ciBib2R5IHdpdGggZ2x1Y29zZSwgd2hpY2ggeW91ciBjZWxscyB1c2UgYXMgZnVlbC4gQ2VydGFpbiBjb21wbGV4IGNhcmJvaHlkcmF0ZXMsIGxpa2UgZmliZXIsIGFsc28gZmVlZCB5b3VyIGd1dCBtaWNyb2Jpb21lLlxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FyYiA8LSBtZW51ICU+JSBcbiAgc2VsZWN0KENhdGVnb3J5LFxuICAgICAgICAgSXRlbSxcbiAgICAgICAgIENhcmJvaHlkcmF0ZXMpJT4lIFxuICBncm91cF9ieShDYXRlZ29yeSkgXG5cbmNhcmJfcGxvdDwtIGNhcmIgJT4lXG4gIGdncGxvdChhZXMoQ2F0ZWdvcnksQ2FyYm9oeWRyYXRlcywgXG4gICAgICAgICAgICAgZmlsbCA9IENhdGVnb3J5KSkgKyBcbiAgZ2VvbV9ib3hwbG90KCkgK1xuICBzY2FsZV9maWxsX2JyZXdlcihwYWxldHRlID0gXCJTZXQxXCIpICsgY29vcmRfZmxpcCgpICsgdGhlbWVfY2xhc3NpYygpICsgZ2d0aXRsZShcIk1lbnUgQ2F0ZWdvcnkgd2l0aCB0aGUgSGlnaGVzdCBDYXJib2h5ZHJhdGVzIENvbnRlbnRcIilcblxuY2FyYl9wbG90XG5cblxuYGBgIn0= -->
 <pre class="r"><code>carb &lt;- menu %&gt;% 
   select(Category,
          Item,
@@ -1990,15 +2076,24 @@ carb_plot&lt;- carb %&gt;%
   scale_fill_brewer(palette = &quot;Set1&quot;) + coord_flip() + theme_classic() + ggtitle(&quot;Menu Category with the Highest Carbohydrates Content&quot;)
 
 carb_plot
-
-# Carbohydrates supply your body with glucose, which your cells use as fuel. Certain complex carbohydrates, like fiber, also feed your gut microbiome.</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Top 10 Menu Food items with High Sugar Content</strong></p>
+</div>
+<div id="sugar" class="section level2">
+<h2>Sugar</h2>
+<hr />
+<p>Sugar also called simple carbohydrates occur naturally in foods, such
+as dairy products, as well as added sugar, which are common in baked
+goods, sweets, and desserts. The body very easily digests and absorbs
+sugar.</p>
+<hr />
+<div id="the-top-10-menu-food-items-with-high-sugar-content" class="section level3">
+<h3>The Top 10 Menu Food items with High Sugar Content</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VnYXIgPC0gbWVudSAlPiVcbiAgc2VsZWN0KENhdGVnb3J5LEl0ZW0sU3VnYXJzKSAlPiUgXG4gIGdyb3VwX2J5KENhdGVnb3J5KVxuXG5tYXhfc3VnYXIgPC1zdWdhciAlPiUgXG4gIGFycmFuZ2UoZGVzYyhTdWdhcnMpKSAlPiUgXG4gIGhlYWQoMTApICU+JSBcbiAgZ2dwbG90KGFlcyhTdWdhcnMsXG4gICAgICAgICAgICAgeT1yZW9yZGVyKEl0ZW0sXG4gICAgICAgICAgICAgICAgICAgICAgIFN1Z2FycyksXG4gICAgICAgICAgICAgZmlsbCA9IFN1Z2FycykpICtcbiAgZ2VvbV9jb2woKSArIFxuICB0aGVtZV9jbGFzc2ljKCkrXG4gIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9IFwibm9uZVwiKSArXG4gIGdlb21fdGV4dChhZXMobGFiZWwgPSBTdWdhcnMpLFxuICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSkpICsgZ2d0aXRsZShcIlRvcCAxMCBNZW51IGl0ZW1zIHdpdGggdGhlIEhpZ2hlc3QgU3VnYXIgQ29udGVudFwiKVxuXG5cbm1heF9zdWdhclxuXG4jU21vb3RoaWVzICYgU2hha2VzIGNvbWUgb3V0IHRoZSBjcmVhbSBvZiBjcm9wIGluIHRoaXMgY2F0ZWdvcnkuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VnYXIgPC0gbWVudSAlPiVcbiAgc2VsZWN0KENhdGVnb3J5LEl0ZW0sU3VnYXJzKSAlPiUgXG4gIGdyb3VwX2J5KENhdGVnb3J5KVxuXG5tYXhfc3VnYXIgPC1zdWdhciAlPiUgXG4gIGFycmFuZ2UoZGVzYyhTdWdhcnMpKSAlPiUgXG4gIGhlYWQoMTApICU+JSBcbiAgZ2dwbG90KGFlcyhTdWdhcnMsXG4gICAgICAgICAgICAgeT1yZW9yZGVyKEl0ZW0sXG4gICAgICAgICAgICAgICAgICAgICAgIFN1Z2FycyksXG4gICAgICAgICAgICAgZmlsbCA9IFN1Z2FycykpICtcbiAgZ2VvbV9jb2woKSArIFxuICB0aGVtZV9jbGFzc2ljKCkrXG4gIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9IFwibm9uZVwiKSArXG4gIGdlb21fdGV4dChhZXMobGFiZWwgPSBTdWdhcnMpLFxuICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSkpICsgZ2d0aXRsZShcIlRvcCAxMCBNZW51IGl0ZW1zIHdpdGggdGhlIEhpZ2hlc3QgU3VnYXIgQ29udGVudFwiKVxuXG5cbm1heF9zdWdhclxuXG5cbmBgYCJ9 -->
 <pre class="r"><code>sugar &lt;- menu %&gt;%
   select(Category,Item,Sugars) %&gt;% 
   group_by(Category)
@@ -2018,15 +2113,16 @@ max_sugar &lt;-sugar %&gt;%
 
 
 max_sugar
-
-#Smoothies &amp; Shakes come out the cream of crop in this category.</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Top 10 Menu Food items with Low Sugar Content</strong></p>
+</div>
+<div id="the-top-10-menu-food-items-with-low-sugar-content" class="section level3">
+<h3>The Top 10 Menu Food items with Low Sugar Content</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWluX3N1Z2FyIDwtIHN1Z2FyICU+JSBcbiAgZmlsdGVyKFN1Z2Fycz4wKSAlPiUgXG4gIGFycmFuZ2UoU3VnYXJzKSAlPiUgXG4gIGhlYWQoMTApICU+JSBcbiAgZ2dwbG90KGFlcyhTdWdhcnMsIFxuICAgICAgICAgICAgIHk9cmVvcmRlcihJdGVtLFxuICAgICAgICAgICAgICAgICAgICAgICBTdWdhcnMpLFxuICAgICAgICAgICAgIGZpbGwgPSBTdWdhcnMpKSArXG4gIGdlb21fY29sKCkgKyBcbiAgdGhlbWVfY2xhc3NpYygpK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSBcIm5vbmVcIikgKyBcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFN1Z2FycyksXG4gICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSkgKyBnZ3RpdGxlKFwiVG9wIDEwIE1lbnUgaXRlbXMgd2l0aCB0aGUgTG93ZXN0IHN1Z2FyIENvbnRlbnRcIilcblxuXG5taW5fc3VnYXJcblxuI0FwcGFyZW50bHkgY2hpY2tlbiBpc24ndCBzd2VldCBidXQgdGFzdHkuIE9oIHdlbGwgYmV0dGVyIGx1Y2sgbmV4dCB0aW1lIE1yLiBNY051Z2dldHMhXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWluX3N1Z2FyIDwtIHN1Z2FyICU+JSBcbiAgZmlsdGVyKFN1Z2Fycz4wKSAlPiUgXG4gIGFycmFuZ2UoU3VnYXJzKSAlPiUgXG4gIGhlYWQoMTApICU+JSBcbiAgZ2dwbG90KGFlcyhTdWdhcnMsIFxuICAgICAgICAgICAgIHk9cmVvcmRlcihJdGVtLFxuICAgICAgICAgICAgICAgICAgICAgICBTdWdhcnMpLFxuICAgICAgICAgICAgIGZpbGwgPSBTdWdhcnMpKSArXG4gIGdlb21fY29sKCkgKyBcbiAgdGhlbWVfY2xhc3NpYygpK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSBcIm5vbmVcIikgKyBcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFN1Z2FycyksXG4gICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSkgKyBnZ3RpdGxlKFwiVG9wIDEwIE1lbnUgaXRlbXMgd2l0aCB0aGUgTG93ZXN0IHN1Z2FyIENvbnRlbnRcIilcblxuXG5taW5fc3VnYXJcblxuXG5gYGAifQ== -->
 <pre class="r"><code>min_sugar &lt;- sugar %&gt;% 
   filter(Sugars&gt;0) %&gt;% 
   arrange(Sugars) %&gt;% 
@@ -2043,16 +2139,21 @@ max_sugar
 
 
 min_sugar
-
-#Apparently chicken isn&#39;t sweet but tasty. Oh well better luck next time Mr. McNuggets!</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Menu Categories with Carbohydrates that contain a higher
-Fibre to Sugar Ratio</strong></p>
+</div>
+<div id="the-menu-categories-with-carbohydrates-that-have-a-higher-fibre-to-sugar-ratiohealthy-carbs" class="section level3">
+<h3>The Menu Categories with Carbohydrates that have a higher Fibre to
+Sugar Ratio(Healthy Carbs)</h3>
+<hr />
+<p>As a general rule, the more fiber and the less sugar there is in the
+carbohydrate, the better it is for your body.</p>
+<hr />
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhbHRoeV9jYXJicyA8LSAgbWVudSAlPiUgXG4gIHNlbGVjdChDYXJib2h5ZHJhdGVzLFxuICAgICAgICAgQ2F0ZWdvcnksXG4gICAgICAgICBTdWdhcnMsXG4gICAgICAgICBEaWV0YXJ5LkZpYmVyKSAgJT4lICBcbiAgZmlsdGVyKERpZXRhcnkuRmliZXIgPiBTdWdhcnMpXG5cbmhlYWx0aHlfY2FyYnNfcGxvdCA8LSBoZWFsdGh5X2NhcmJzICU+JSBcbiAgZ2dwbG90KGFlcyhDYXJib2h5ZHJhdGVzLFxuICAgICAgICAgICAgIHkgPSByZW9yZGVyKENhdGVnb3J5LENhcmJvaHlkcmF0ZXMpLFxuICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICtcbiAgZ2VvbV9ib3hwbG90KCkgKyBnZ3RpdGxlKFwiTWVudSBDYXRlZ29yaWVzIFJpY2ggaW4gQ2FyYm9oeWRyYXRlcyBhbmQgRmlicmVcIikgKyB0aGVtZV9jbGFzc2ljKClcblxuXG5cbmhlYWx0aHlfY2FyYnNfcGxvdFxuXG4jQXMgYSBnZW5lcmFsIHJ1bGUsIHRoZSBtb3JlIGZpYmVyIGFuZCB0aGUgbGVzcyBzdWdhciB0aGVyZSBpcyBpbiB0aGUgY2FyYm9oeWRyYXRlLCB0aGUgYmV0dGVyIGl0IGlzIGZvciB5b3VyIGJvZHkuXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhbHRoeV9jYXJicyA8LSAgbWVudSAlPiUgXG4gIHNlbGVjdChDYXJib2h5ZHJhdGVzLFxuICAgICAgICAgQ2F0ZWdvcnksXG4gICAgICAgICBTdWdhcnMsXG4gICAgICAgICBEaWV0YXJ5LkZpYmVyKSAgJT4lICBcbiAgZmlsdGVyKERpZXRhcnkuRmliZXIgPiBTdWdhcnMpXG5cbmhlYWx0aHlfY2FyYnNfcGxvdCA8LSBoZWFsdGh5X2NhcmJzICU+JSBcbiAgZ2dwbG90KGFlcyhDYXJib2h5ZHJhdGVzLFxuICAgICAgICAgICAgIHkgPSByZW9yZGVyKENhdGVnb3J5LENhcmJvaHlkcmF0ZXMpLFxuICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICtcbiAgZ2VvbV9ib3hwbG90KCkgKyBnZ3RpdGxlKFwiSGVhbHRoeSBDYXJic1wiKSArIHRoZW1lX2NsYXNzaWMoKVxuXG5cblxuaGVhbHRoeV9jYXJic19wbG90XG5cblxuYGBgIn0= -->
 <pre class="r"><code>healthy_carbs &lt;-  menu %&gt;% 
   select(Carbohydrates,
          Category,
@@ -2064,21 +2165,30 @@ healthy_carbs_plot &lt;- healthy_carbs %&gt;%
   ggplot(aes(Carbohydrates,
              y = reorder(Category,Carbohydrates),
              fill = Category)) +
-  geom_boxplot() + ggtitle(&quot;Menu Categories Rich in Carbohydrates and Fibre&quot;) + theme_classic()
+  geom_boxplot() + ggtitle(&quot;Healthy Carbs&quot;) + theme_classic()
 
 
 
 healthy_carbs_plot
-
-#As a general rule, the more fiber and the less sugar there is in the carbohydrate, the better it is for your body.
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Menu Categories grouped by sodium content</strong></p>
+</div>
+<div id="the-menu-categories-grouped-by-sodium-content" class="section level3">
+<h3>The Menu Categories grouped by sodium content</h3>
+<hr />
+<p>Our bodies need sodium; however, there is so much in most processed
+foods, and too much sodium can have several negative effects. Canned
+foods are notorious for having lots of sodium, as are bottled sauces,
+salty snacks, and processed foods. Most nutritionists recommend watching
+your sodium intake carefully because too much sodium in your diet is
+dangerous. It can lead to high blood pressure and many related health
+conditions.</p>
+<hr />
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29kaXVtICA8LSBtZW51ICU+JVxuICBzZWxlY3QoQ2F0ZWdvcnksXG4gICAgICAgICBJdGVtLFNvZGl1bSxcbiAgICAgICAgIFNvZGl1bS4uLi5EYWlseS5WYWx1ZS4pICU+JSBcbiAgZ3JvdXBfYnkoQ2F0ZWdvcnkpXG5cblxuc29kaXVtX3Bsb3QgPC0gc29kaXVtICU+JSBcbiAgZ2dwbG90KGFlcyhTb2RpdW0sXG4gICAgICAgICAgICAgQ2F0ZWdvcnksXG4gICAgICAgICAgICAgZmlsbCA9IENhdGVnb3J5KSkgK1xuICBnZW9tX2JveHBsb3QoKSArIHRoZW1lX2NsYXNzaWMoKSArIGdndGl0bGUoXCJNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSBzb2RpdW0gY29udGVudFwiKVxuXG5cbnNvZGl1bV9wbG90XG5cbiMgT3VyIGJvZGllcyBuZWVkIHNvZGl1bTsgaG93ZXZlciwgdGhlcmUgaXMgc28gbXVjaCBpbiBtb3N0IHByb2Nlc3NlZCBmb29kcywgYW5kIHRvbyBtdWNoIHNvZGl1bSBjYW4gaGF2ZSBzZXZlcmFsIG5lZ2F0aXZlIGVmZmVjdHMuIENhbm5lZCBmb29kcyBhcmUgbm90b3Jpb3VzIGZvciBoYXZpbmcgbG90cyBvZiBzb2RpdW0sIGFzIGFyZSBib3R0bGVkIHNhdWNlcywgc2FsdHkgc25hY2tzLCBhbmQgcHJvY2Vzc2VkIGZvb2RzLiBNb3N0IG51dHJpdGlvbmlzdHMgcmVjb21tZW5kIHdhdGNoaW5nIHlvdXIgc29kaXVtIGludGFrZSBjYXJlZnVsbHkgYmVjYXVzZSB0b28gbXVjaCBzb2RpdW0gaW4geW91ciBkaWV0IGlzIGRhbmdlcm91cy4gSXQgY2FuIGxlYWQgdG8gaGlnaCBibG9vZCBwcmVzc3VyZSBhbmQgbWFueSByZWxhdGVkIGhlYWx0aCBjb25kaXRpb25zLlxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc29kaXVtICA8LSBtZW51ICU+JVxuICBzZWxlY3QoQ2F0ZWdvcnksXG4gICAgICAgICBJdGVtLFNvZGl1bSxcbiAgICAgICAgIFNvZGl1bS4uLi5EYWlseS5WYWx1ZS4pICU+JSBcbiAgZ3JvdXBfYnkoQ2F0ZWdvcnkpXG5cblxuc29kaXVtX3Bsb3QgPC0gc29kaXVtICU+JSBcbiAgZ2dwbG90KGFlcyhTb2RpdW0sXG4gICAgICAgICAgICAgQ2F0ZWdvcnksXG4gICAgICAgICAgICAgZmlsbCA9IENhdGVnb3J5KSkgK1xuICBnZW9tX2JveHBsb3QoKSArIHRoZW1lX2NsYXNzaWMoKSArIGdndGl0bGUoXCJNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSBzb2RpdW0gY29udGVudFwiKVxuXG5cbnNvZGl1bV9wbG90XG5cblxuYGBgIn0= -->
 <pre class="r"><code>sodium  &lt;- menu %&gt;%
   select(Category,
          Item,Sodium,
@@ -2094,15 +2204,24 @@ sodium_plot &lt;- sodium %&gt;%
 
 
 sodium_plot
-
-# Our bodies need sodium; however, there is so much in most processed foods, and too much sodium can have several negative effects. Canned foods are notorious for having lots of sodium, as are bottled sauces, salty snacks, and processed foods. Most nutritionists recommend watching your sodium intake carefully because too much sodium in your diet is dangerous. It can lead to high blood pressure and many related health conditions.</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>Menu Categories grouped by Trans Fat</strong></p>
+</div>
+<div id="the-menu-categories-grouped-by-trans-fat" class="section level3">
+<h3>The Menu Categories grouped by Trans Fat</h3>
+<hr />
+<p>In the United States, the main dietary source of trans fats is
+partially hydrogenated vegetable oils, previously used in many
+commercially prepared foods. Consuming trans fats may adversely affect
+cholesterol levels in the body and may contribute to the risk of
+atherosclerosis. Because of this, the US Food and Drug Administration
+(FDA) has banned the use of trans fats in prepared foods.</p>
+<hr />
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHJhbnNfZmF0IDwtIG1lbnUgJT4lXG4gIHNlbGVjdChDYXRlZ29yeSxcbiAgICAgICAgIFRyYW5zLkZhdCkgJT4lXG4gIGdyb3VwX2J5KENhdGVnb3J5KVxuXG50cmFuc19wbG90IDwtIHRyYW5zX2ZhdCAlPiUgXG4gIGdncGxvdChhZXMoVHJhbnMuRmF0LFxuICAgICAgICAgICAgIENhdGVnb3J5LFxuICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsgXG4gIGdlb21fYm94cGxvdCgpICsgdGhlbWVfY2xhc3NpYygpICsgIGdndGl0bGUoXCJNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSB0cmFuc19mYXQgY29udGVudFwiKVxuXG50cmFuc19wbG90XG5cbiMgSW4gdGhlIFVuaXRlZCBTdGF0ZXMsIHRoZSBtYWluIGRpZXRhcnkgc291cmNlIG9mIHRyYW5zIGZhdHMgaXMgcGFydGlhbGx5IGh5ZHJvZ2VuYXRlZCB2ZWdldGFibGUgb2lscywgcHJldmlvdXNseSB1c2VkIGluIG1hbnkgY29tbWVyY2lhbGx5IHByZXBhcmVkIGZvb2RzLiBDb25zdW1pbmcgdHJhbnMgZmF0cyBtYXkgYWR2ZXJzZWx5IGFmZmVjdCBjaG9sZXN0ZXJvbCBsZXZlbHMgaW4gdGhlIGJvZHkgYW5kIG1heSBjb250cmlidXRlIHRvIHRoZSByaXNrIG9mIGF0aGVyb3NjbGVyb3Npcy4gQmVjYXVzZSBvZiB0aGlzLCB0aGUgVVMgRm9vZCBhbmQgRHJ1ZyBBZG1pbmlzdHJhdGlvbiAoRkRBKSBoYXMgYmFubmVkIHRoZSB1c2Ugb2YgdHJhbnMgZmF0cyBpbiBwcmVwYXJlZCBmb29kcy5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHJhbnNfZmF0IDwtIG1lbnUgJT4lXG4gIHNlbGVjdChDYXRlZ29yeSxcbiAgICAgICAgIFRyYW5zLkZhdCkgJT4lXG4gIGdyb3VwX2J5KENhdGVnb3J5KVxuXG50cmFuc19wbG90IDwtIHRyYW5zX2ZhdCAlPiUgXG4gIGdncGxvdChhZXMoVHJhbnMuRmF0LFxuICAgICAgICAgICAgIENhdGVnb3J5LFxuICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsgXG4gIGdlb21fYm94cGxvdCgpICsgdGhlbWVfY2xhc3NpYygpICsgIGdndGl0bGUoXCJNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSB0cmFuc19mYXQgY29udGVudFwiKVxuXG50cmFuc19wbG90XG5cbmBgYCJ9 -->
 <pre class="r"><code>trans_fat &lt;- menu %&gt;%
   select(Category,
          Trans.Fat) %&gt;%
@@ -2115,16 +2234,21 @@ trans_plot &lt;- trans_fat %&gt;%
   geom_boxplot() + theme_classic() +  ggtitle(&quot;Menu Categories grouped by trans_fat content&quot;)
 
 trans_plot
-
-# In the United States, the main dietary source of trans fats is partially hydrogenated vegetable oils, previously used in many commercially prepared foods. Consuming trans fats may adversely affect cholesterol levels in the body and may contribute to the risk of atherosclerosis. Because of this, the US Food and Drug Administration (FDA) has banned the use of trans fats in prepared foods.</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><strong>By how much do Protein,Carbohydrates and Fat affect the
-Calories?</strong></p>
+</div>
+<div id="the-correlation-between-proteincarbohydrates-fat-and-calories" class="section level3">
+<h3>The Correlation between Protein,Carbohydrates, Fat and Calories</h3>
+<hr />
+<p>Fats are the slowest source of energy but the most energy-efficient
+form of food.Because fats are such an efficient form of energy, the body
+stores any excess energy as fat.</p>
+<hr />
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2Fsb3JpZXMgPC0gbWVudSAlPiVcbiAgc2VsZWN0KENhbG9yaWVzLFxuICAgICAgICAgQ2FyYm9oeWRyYXRlcywgXG4gICAgICAgICBQcm90ZWluLFxuICAgICAgICAgVG90YWwuRmF0KSAlPiUgXG4gIGdyb3VwX2J5KENhbG9yaWVzKVxuXG5jYWxvcmllc19wbG90IDwtIGdnY29ycihjYWxvcmllcyxcbiAgICAgICBtZXRob2QgPSAgYyhcImV2ZXJ5dGhpbmdcIiwgXCJwZWFyc29uXCIpLFxuICAgICAgIGxhYmVsID0gVFJVRSkgICsgdGhlbWVfY2xhc3NpYygpICsgIGdndGl0bGUoXCJIb3cgUHJvdGVpbixDYXJib2h5ZHJhdGVzIGFuZCBGYXQgY29udHJpYnV0ZSB0byBDYWxvcmllcz9cIilcblxuY2Fsb3JpZXNfcGxvdFxuXG4jRmF0cyBhcmUgdGhlIHNsb3dlc3Qgc291cmNlIG9mIGVuZXJneSBidXQgdGhlIG1vc3QgZW5lcmd5LWVmZmljaWVudCBmb3JtIG9mIGZvb2QuQmVjYXVzZSBmYXRzIGFyZSBzdWNoIGFuIGVmZmljaWVudCBmb3JtIG9mIGVuZXJneSwgdGhlIGJvZHkgc3RvcmVzIGFueSBleGNlc3MgZW5lcmd5IGFzIGZhdFxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2Fsb3JpZXMgPC0gbWVudSAlPiVcbiAgc2VsZWN0KENhbG9yaWVzLFxuICAgICAgICAgQ2FyYm9oeWRyYXRlcywgXG4gICAgICAgICBQcm90ZWluLFxuICAgICAgICAgVG90YWwuRmF0KSAlPiUgXG4gIGdyb3VwX2J5KENhbG9yaWVzKVxuXG5jYWxvcmllc19wbG90IDwtIGdnY29ycihjYWxvcmllcyxcbiAgICAgICBtZXRob2QgPSAgYyhcImV2ZXJ5dGhpbmdcIiwgXCJwZWFyc29uXCIpLFxuICAgICAgIGxhYmVsID0gVFJVRSkgICsgdGhlbWVfY2xhc3NpYygpICsgIGdndGl0bGUoXCJDb3JyZWxhdGlvbiBvZiBDYWxvcmllcyBhbmQgTWFjcm8tTnV0cmllbnRzXCIpXG5cbmNhbG9yaWVzX3Bsb3RcblxuXG5gYGAifQ== -->
 <pre class="r"><code>calories &lt;- menu %&gt;%
   select(Calories,
          Carbohydrates, 
@@ -2134,18 +2258,17 @@ Calories?</strong></p>
 
 calories_plot &lt;- ggcorr(calories,
        method =  c(&quot;everything&quot;, &quot;pearson&quot;),
-       label = TRUE)  + theme_classic() +  ggtitle(&quot;How Protein,Carbohydrates and Fat contribute to Calories?&quot;)
+       label = TRUE)  + theme_classic() +  ggtitle(&quot;Correlation of Calories and Macro-Nutrients&quot;)
 
 calories_plot
-
-#Fats are the slowest source of energy but the most energy-efficient form of food.Because fats are such an efficient form of energy, the body stores any excess energy as fat</code></pre>
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>in</p>
-<!-- rnb-text-end -->
+</div>
+</div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1jRG9uYWxkcyBOdXRyaXRpb25hbCBBbmFseXNpcyINCm91dHB1dDoNCiAgZ2l0aHViX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KLS0tDQoNClRoaXMgUmVwb3J0IHNob3dzIHRoZSANCg0KRG93bmxvYWQgdGhlW2RhdGFzZXQgaGVyZV0oaHR0cHM6Ly93d3cua2FnZ2xlLmNvbS9kYXRhc2V0cy9tY2RvbmFsZHMvbnV0cml0aW9uLWZhY3RzL2RhdGEpDQoNCg0KKkxvYWQgdGhlIFBhY2thZ2VzIGZvciBkYXRhIG1hbmlwdWxhdGlvbiBhbmQgdmlzdWFsaXphdGlvbioNCg0KYGBge3J9DQpsaWJyYXJ5KGRwbHlyKQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpsaWJyYXJ5KEdHYWxseSkNCmBgYA0KKipSZWFkIGluIHRoZSBkYXRhKioNCg0KDQpgYGB7cn0NCg0KbWVudSA8LSByZWFkLmNzdigibWVudS5jc3YiKQ0KDQoNCmBgYA0KDQoNCioqSG93IG1hbnkgTWVudSdzIGRvIGVhY2ggQ2F0ZWdvcnkgaGF2ZT8qKg0KDQoNCipUaGlzIGdpdmVzIGEgcXVpY2sgZ2xhbmNlIGF0IHRoZSBkYXRhIGJlZm9yZSB3ZSBiZWdpbiBleHBsb3JhdGlvbioNCmBgYHtyfQ0KY2F0IDwtIG1lbnUgJT4lIA0KICBzZWxlY3QoQ2F0ZWdvcnkpICU+JSANCiAgY291bnQoQ2F0ZWdvcnksbmFtZSA9ICJUb3RhbCIpICAlPiUgDQogIGRpc3RpbmN0KCkNCg0KY2F0X3Bsb3QgPC0gY2F0ICU+JSANCiAgZ2dwbG90KGFlcyhDYXRlZ29yeSwNCiAgICAgICAgICAgICBUb3RhbCwNCiAgICAgICAgICAgICBmaWxsID0gQ2F0ZWdvcnkpKSArIA0KICBnZW9tX2NvbCgpICsgDQogIHRoZW1lX2NsYXNzaWMoKSArIA0KICBsYWJzKHRpdGxlID0gIlRvdGFsIENhdGVnb3JpZXMiKSArIA0KICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAibm9uZSIpICsgDQogIGdlb21fdGV4dChhZXMobGFiZWwgPSBUb3RhbCksIA0KICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSksDQogICAgICAgICAgICBjb2xvciA9ImJsYWNrIiwgc2l6ZSA9IDMpICsgY29vcmRfZmxpcCgpDQoNCg0KY2F0X3Bsb3QNCg0KI0NvZmZlZSAmIFRlYSBvZmZlcnMgYSBsb3QgYSB2YXJpYXRpb24gb24gdGhlIG1lbnUNCg0KYGBgDQoNCg0KKipBdmVyYWdlIFByb3RlaW4gQ29udGVudCBpbiB0aGUgTWVudSBDYXRlZ29yeSoqDQpgYGB7cn0NClByb19hdmcgPC0gbWVudSAlPiUgc2VsZWN0KENhdGVnb3J5LEl0ZW0sUHJvdGVpbikgJT4lIGdyb3VwX2J5KENhdGVnb3J5KSAlPiUNCiAgYWdncmVnYXRlKFByb3RlaW5+Q2F0ZWdvcnksIEZVTiA9IG1lYW4pDQoNClByb19hdmcNCg0KDQojQ2hpY2tlbiAmIEZpc2gsIEJlZWYgJiBwb3JrIGNvbnRhaW4gaGlnaGVyIHByb3RlaW4gY29udGVudCBpbiBldmVyeSBtZW51IGl0ZW0NCmBgYA0KDQoNCioqV2hhdCBNZW51IGl0ZW0gY29udGFpbnMgdGhlIGhpZ2hlc3QgYW1vdW50IG9mIFByb3RlaW4gY29udGVudD8qKg0KYGBge3J9DQptYXhfcHJvIDwtIG1lbnUgJT4lIA0KICBzZWxlY3QoSXRlbSxQcm90ZWluKSAlPiUgIA0KICBncm91cF9ieShJdGVtKSAlPiUgDQogIGFycmFuZ2UoZGVzYyhQcm90ZWluKSkgJT4lIA0KICBoZWFkKDE1KSAlPiUgDQogIGdncGxvdChhZXMoeD0gcmVvcmRlcihJdGVtLCANCiAgICAgICAgICAgICAgICAgICAgICAgIFByb3RlaW4pLA0KICAgICAgICAgICAgIGZpbGwgPSBJdGVtKSkgKyANCiAgZ2VvbV9iYXIoc3RhdCA9ICJpZGVudGl0eSIsDQogICAgICAgICAgIGFlcyh5PSBQcm90ZWluICkpICsNCiAgY29vcmRfZmxpcCgpICsNCiAgdGhlbWVfYncoKSsgDQogIGdlb21fdGV4dChhZXMobGFiZWwgPSBQcm90ZWluLCANCiAgICAgICAgICAgICAgICB5PSBQcm90ZWluKSwNCiAgICAgICAgICAgIHBvc2l0aW9uID0gcG9zaXRpb25fc3RhY2sodmp1c3QgPSAwLjUpLA0KICAgICAgICAgICAgY29sb3IgPSAiQmxhY2siLA0KICAgICAgICAgICAgc2l6ZSA9IDMpKw0KICB0aGVtZShsZWdlbmQucG9zaXRpb249Im5vbmUiKSArDQogIGdndGl0bGUoIlRPUCAxNSBNY0RvbmFsZCdzIE1lbnUgSXRlbSB3aXRoIHRoZSBIaWdoZXN0IFByb3RlaW4gQ29udGVudCIpICt0aGVtZShwYW5lbC5ncmlkLm1ham9yID0gZWxlbWVudF9ibGFuaygpLCBwYW5lbC5ncmlkLm1pbm9yID0gZWxlbWVudF9ibGFuaygpKQ0KDQptYXhfcHJvDQoNCiNDaGlja2VuIE1jTnVnZ2VudHMoNDAgcGllY2VzKSB0b3BzIHRoZSBjaGFydCBmb3IgbWVhbHMgd2l0aCB0aGUgaGlnaGVzdCBwcm90ZWluIGNvbnRlbnQuDQpgYGANCg0KDQoqKldoYXQgTWVudSBpdGVtIGNvbnRhaW5zIHRoZSBsZWFzdCBhbW91bnQgb2YgUHJvdGVpbiBjb250ZW50PyoqDQpgYGB7cn0NCm1pbl9wcm8gPC0gbWVudSAlPiUgDQogIHNlbGVjdChJdGVtLFByb3RlaW4pICU+JSAgDQogIGdyb3VwX2J5KEl0ZW0sIFByb3RlaW4pICU+JSANCiAgZmlsdGVyKFByb3RlaW4gPjAgKSU+JSANCiAgYXJyYW5nZShQcm90ZWluKSAlPiUgDQogIGhlYWQoMTUpICAlPiUgDQogIGdncGxvdChhZXMoeD0gcmVvcmRlcihJdGVtLCANCiAgICAgICAgICAgICAgICAgICAgICAgIFByb3RlaW4pLA0KICAgICAgICAgICAgIGZpbGwgPSBJdGVtKSkgKyANCiAgZ2VvbV9iYXIoc3RhdCA9ICJpZGVudGl0eSIsDQogICAgICAgICAgIGFlcyh5PSBQcm90ZWluICkpICsNCiAgY29vcmRfZmxpcCgpICsNCiAgdGhlbWVfYncoKSsgDQogIGdlb21fdGV4dChhZXMobGFiZWwgPSBQcm90ZWluLCANCiAgICAgICAgICAgICAgICB5PSBQcm90ZWluKSwNCiAgICAgICAgICAgIHBvc2l0aW9uID0gcG9zaXRpb25fc3RhY2sodmp1c3QgPSAwLjUpLA0KICAgICAgICAgICAgY29sb3IgPSAiQmxhY2siLA0KICAgICAgICAgICAgc2l6ZSA9IDMpKw0KICBnZ3RpdGxlKCJUT1AgMTAgTWNEb25hbGQncyBNZW51IEl0ZW0gd2l0aCB0aGUgTGVhc3QgUHJvdGVpbiIpKw0KICB0aGVtZShsZWdlbmQucG9zaXRpb249Im5vbmUiKQ0KDQptaW5fcHJvDQoNCiNUaGUgcHJvdGVpbiBsZXZlbHMgaW4gdGhpcyBjYXRlZ29yeSBhcmUgdmVyeSBsb3cuDQpgYGANCg0KDQoqKkhvdyBkbyB0aGUgTWVudSBjYXRlZ29yeSdzIHJhbmsgaW4gb3JkZXIgb2YgQ2Fsb3JpZXM/KioNCmBgYHtyfQ0KY2FsIDwtIG1lbnUgJT4lIA0KICBzZWxlY3QoQ2F0ZWdvcnksDQogICAgICAgICBJdGVtLA0KICAgICAgICAgQ2Fsb3JpZXMpICU+JSANCiAgZ3JvdXBfYnkoQ2F0ZWdvcnkpICANCg0KDQoNCmNhbF9wbG90IDwtIGNhbCAlPiUgDQogIGdncGxvdChhZXMoQ2Fsb3JpZXMsDQogICAgICAgICAgICAgQ2F0ZWdvcnksDQogICAgICAgICAgICAgZmlsbCA9IENhdGVnb3J5KSkgKyANCiAgZ2VvbV9ib3hwbG90KCkgKyANCiAgdGhlbWVfY2xhc3NpYygpICsgDQogIHNjYWxlX2ZpbGxfYnJld2VyKHBhbGV0dGUgPSAiU2V0MSIpICsgZ2d0aXRsZSgiQ2Fsb3JpZSBDb250ZW50IHBlciBNZW51IENhdGVnb3J5IikNCg0KY2FsX3Bsb3QNCg0KI1Ntb290aGllcyAmIFNoYWtlcyBhcmUgZ29pbmcgdG8gZ2l2ZSB5b3UgdGhlIGVuZXJneSB5b3UgbmVlZCEhIQ0KYGBgDQoNCg0KKipUb3AgMTAgTWVudSBGb29kIGl0ZW1zIHdpdGggSGlnaCBjYWxvcmllcyoqDQpgYGB7cn0NCm1heF9jYWwgPC0gbWVudSAlPiUgDQogIHNlbGVjdChDYXRlZ29yeSwNCiAgICAgICAgIEl0ZW0sDQogICAgICAgICBDYWxvcmllcykgJT4lIA0KICBncm91cF9ieShJdGVtKSAlPiUgDQogIGFycmFuZ2UoZGVzYyhDYWxvcmllcykpJT4lIA0KICBoZWFkKDEwKSU+JSANCiAgZ2dwbG90KGFlcyhDYWxvcmllcywNCiAgICAgICAgICAgICB5ID0gcmVvcmRlcihJdGVtLA0KICAgICAgICAgICAgICAgICAgICAgICAgIENhbG9yaWVzKQ0KICAgICAgICAgICAgICxmaWxsID1JdGVtKSkgKyANCiAgZ2VvbV9jb2woKSArDQogIHRoZW1lX2NsYXNzaWMoKSsNCiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gIm5vbmUiKSArIA0KICBnZW9tX3RleHQoYWVzKGxhYmVsID0gQ2Fsb3JpZXMpLCANCiAgICAgICAgICAgIHBvc2l0aW9uID0gcG9zaXRpb25fc3RhY2sodmp1c3QgPSAwLjUpLA0KICAgICAgICAgICAgY29sb3I9ImJsYWNrIiwgc2l6ZSA9MykgKyBnZ3RpdGxlKCJUT1AgMTAgTWNEb25hbGQncyBNZW51IEl0ZW0gd2l0aCB0aGUgSGlnaGVzdCBDYWxvcmllIENvbnRlbnQiKQ0KDQptYXhfY2FsDQoNCiNQcm90ZWlub3VzIGFuZCBFbmVyZ3kgcGFja2VkPyBQb3dlciB0byB0aGUgTWNOdWdnZXRzKDQwIHBpZWNlcykgISEhDQpgYGANCg0KDQoqKlRvcCAxMCBNZW51IEZvb2QgaXRlbXMgd2l0aCBMb3cgY2Fsb3JpZXMqKg0KYGBge3J9DQptaW5fY2FsIDwtIG1lbnUgJT4lDQogIHNlbGVjdChDYXRlZ29yeSwNCiAgICAgICAgIEl0ZW0sDQogICAgICAgICBDYWxvcmllcyklPiUgDQogIGZpbHRlcihDYWxvcmllcz4wKSAlPiUgDQogIGdyb3VwX2J5KEl0ZW0pICU+JSANCiAgYXJyYW5nZShDYWxvcmllcyklPiUgDQogIGhlYWQoMTApICU+JSANCiAgZ2dwbG90KGFlcyhDYWxvcmllcywNCiAgICAgICAgICAgICB5ID0gcmVvcmRlcihJdGVtLA0KICAgICAgICAgICAgICAgICAgICAgICAgIENhbG9yaWVzKSwNCiAgICAgICAgICAgICBmaWxsID1JdGVtKSkgKyANCiAgZ2VvbV9jb2woKSArIA0KICB0aGVtZV9jbGFzc2ljKCkrIA0KICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAibm9uZSIpICsgDQogIGdlb21fdGV4dChhZXMobGFiZWwgPSBDYWxvcmllcyksIA0KICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSksDQogICAgICAgICAgICBjb2xvcj0iYmxhY2siLCBzaXplID0zKSArDQogIHNjYWxlX2ZpbGxfYnJld2VyKHBhbGV0dGUgPSAiU2V0MyIpICsgZ2d0aXRsZSgiVE9QIDEwIE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggTG93IENhbG9yaWUgQ29udGVudCIpDQoNCm1pbl9jYWwNCg0KI1RoYXQncyBub3QgYSBsb3QgZW5lcmd5ICBidXQgaXQncyBlbmVyZ3kgbm9uZXRoZWxlc3MuDQoNCmBgYA0KDQoNCioqTWVudSBDYXRlZ29yeSB3aXRoIHRoZSBIaWdoZXN0IENhcmJvaHlkcmF0ZXMgQ29udGVudCoqDQpgYGB7cn0NCmNhcmIgPC0gbWVudSAlPiUgDQogIHNlbGVjdChDYXRlZ29yeSwNCiAgICAgICAgIEl0ZW0sDQogICAgICAgICBDYXJib2h5ZHJhdGVzKSU+JSANCiAgZ3JvdXBfYnkoQ2F0ZWdvcnkpIA0KDQpjYXJiX3Bsb3Q8LSBjYXJiICU+JQ0KICBnZ3Bsb3QoYWVzKENhdGVnb3J5LENhcmJvaHlkcmF0ZXMsIA0KICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsgDQogIGdlb21fYm94cGxvdCgpICsNCiAgc2NhbGVfZmlsbF9icmV3ZXIocGFsZXR0ZSA9ICJTZXQxIikgKyBjb29yZF9mbGlwKCkgKyB0aGVtZV9jbGFzc2ljKCkgKyBnZ3RpdGxlKCJNZW51IENhdGVnb3J5IHdpdGggdGhlIEhpZ2hlc3QgQ2FyYm9oeWRyYXRlcyBDb250ZW50IikNCg0KY2FyYl9wbG90DQoNCiMgQ2FyYm9oeWRyYXRlcyBzdXBwbHkgeW91ciBib2R5IHdpdGggZ2x1Y29zZSwgd2hpY2ggeW91ciBjZWxscyB1c2UgYXMgZnVlbC4gQ2VydGFpbiBjb21wbGV4IGNhcmJvaHlkcmF0ZXMsIGxpa2UgZmliZXIsIGFsc28gZmVlZCB5b3VyIGd1dCBtaWNyb2Jpb21lLg0KYGBgDQoNCg0KKipUb3AgMTAgTWVudSBGb29kIGl0ZW1zIHdpdGggSGlnaCBTdWdhciBDb250ZW50KioNCmBgYHtyfQ0Kc3VnYXIgPC0gbWVudSAlPiUNCiAgc2VsZWN0KENhdGVnb3J5LEl0ZW0sU3VnYXJzKSAlPiUgDQogIGdyb3VwX2J5KENhdGVnb3J5KQ0KDQptYXhfc3VnYXIgPC1zdWdhciAlPiUgDQogIGFycmFuZ2UoZGVzYyhTdWdhcnMpKSAlPiUgDQogIGhlYWQoMTApICU+JSANCiAgZ2dwbG90KGFlcyhTdWdhcnMsDQogICAgICAgICAgICAgeT1yZW9yZGVyKEl0ZW0sDQogICAgICAgICAgICAgICAgICAgICAgIFN1Z2FycyksDQogICAgICAgICAgICAgZmlsbCA9IFN1Z2FycykpICsNCiAgZ2VvbV9jb2woKSArIA0KICB0aGVtZV9jbGFzc2ljKCkrDQogIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICJub25lIikgKw0KICBnZW9tX3RleHQoYWVzKGxhYmVsID0gU3VnYXJzKSwNCiAgICAgICAgICAgIHBvc2l0aW9uID0gcG9zaXRpb25fc3RhY2sodmp1c3QgPSAwLjUpKSArIGdndGl0bGUoIlRvcCAxMCBNZW51IGl0ZW1zIHdpdGggdGhlIEhpZ2hlc3QgU3VnYXIgQ29udGVudCIpDQoNCg0KbWF4X3N1Z2FyDQoNCiNTbW9vdGhpZXMgJiBTaGFrZXMgY29tZSBvdXQgdGhlIGNyZWFtIG9mIGNyb3AgaW4gdGhpcyBjYXRlZ29yeS4NCmBgYA0KDQoNCioqVG9wIDEwIE1lbnUgRm9vZCBpdGVtcyB3aXRoIExvdyBTdWdhciBDb250ZW50KioNCmBgYHtyfQ0KbWluX3N1Z2FyIDwtIHN1Z2FyICU+JSANCiAgZmlsdGVyKFN1Z2Fycz4wKSAlPiUgDQogIGFycmFuZ2UoU3VnYXJzKSAlPiUgDQogIGhlYWQoMTApICU+JSANCiAgZ2dwbG90KGFlcyhTdWdhcnMsIA0KICAgICAgICAgICAgIHk9cmVvcmRlcihJdGVtLA0KICAgICAgICAgICAgICAgICAgICAgICBTdWdhcnMpLA0KICAgICAgICAgICAgIGZpbGwgPSBTdWdhcnMpKSArDQogIGdlb21fY29sKCkgKyANCiAgdGhlbWVfY2xhc3NpYygpKw0KICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAibm9uZSIpICsgDQogIGdlb21fdGV4dChhZXMobGFiZWwgPSBTdWdhcnMpLA0KICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSkpICsgZ2d0aXRsZSgiVG9wIDEwIE1lbnUgaXRlbXMgd2l0aCB0aGUgTG93ZXN0IHN1Z2FyIENvbnRlbnQiKQ0KDQoNCm1pbl9zdWdhcg0KDQojQXBwYXJlbnRseSBjaGlja2VuIGlzbid0IHN3ZWV0IGJ1dCB0YXN0eS4gT2ggd2VsbCBiZXR0ZXIgbHVjayBuZXh0IHRpbWUgTXIuIE1jTnVnZ2V0cyENCmBgYA0KDQoNCg0KKipNZW51IENhdGVnb3JpZXMgd2l0aCBDYXJib2h5ZHJhdGVzIHRoYXQgY29udGFpbiBhIGhpZ2hlciBGaWJyZSB0byBTdWdhciBSYXRpbyoqIA0KYGBge3J9DQpoZWFsdGh5X2NhcmJzIDwtICBtZW51ICU+JSANCiAgc2VsZWN0KENhcmJvaHlkcmF0ZXMsDQogICAgICAgICBDYXRlZ29yeSwNCiAgICAgICAgIFN1Z2FycywNCiAgICAgICAgIERpZXRhcnkuRmliZXIpICAlPiUgIA0KICBmaWx0ZXIoRGlldGFyeS5GaWJlciA+IFN1Z2FycykNCg0KaGVhbHRoeV9jYXJic19wbG90IDwtIGhlYWx0aHlfY2FyYnMgJT4lIA0KICBnZ3Bsb3QoYWVzKENhcmJvaHlkcmF0ZXMsDQogICAgICAgICAgICAgeSA9IHJlb3JkZXIoQ2F0ZWdvcnksQ2FyYm9oeWRyYXRlcyksDQogICAgICAgICAgICAgZmlsbCA9IENhdGVnb3J5KSkgKw0KICBnZW9tX2JveHBsb3QoKSArIGdndGl0bGUoIk1lbnUgQ2F0ZWdvcmllcyBSaWNoIGluIENhcmJvaHlkcmF0ZXMgYW5kIEZpYnJlIikgKyB0aGVtZV9jbGFzc2ljKCkNCg0KDQoNCmhlYWx0aHlfY2FyYnNfcGxvdA0KDQojQXMgYSBnZW5lcmFsIHJ1bGUsIHRoZSBtb3JlIGZpYmVyIGFuZCB0aGUgbGVzcyBzdWdhciB0aGVyZSBpcyBpbiB0aGUgY2FyYm9oeWRyYXRlLCB0aGUgYmV0dGVyIGl0IGlzIGZvciB5b3VyIGJvZHkuDQoNCmBgYA0KDQoNCg0KKipNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSBzb2RpdW0gY29udGVudCoqDQpgYGB7cn0NCnNvZGl1bSAgPC0gbWVudSAlPiUNCiAgc2VsZWN0KENhdGVnb3J5LA0KICAgICAgICAgSXRlbSxTb2RpdW0sDQogICAgICAgICBTb2RpdW0uLi4uRGFpbHkuVmFsdWUuKSAlPiUgDQogIGdyb3VwX2J5KENhdGVnb3J5KQ0KDQoNCnNvZGl1bV9wbG90IDwtIHNvZGl1bSAlPiUgDQogIGdncGxvdChhZXMoU29kaXVtLA0KICAgICAgICAgICAgIENhdGVnb3J5LA0KICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsNCiAgZ2VvbV9ib3hwbG90KCkgKyB0aGVtZV9jbGFzc2ljKCkgKyBnZ3RpdGxlKCJNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSBzb2RpdW0gY29udGVudCIpDQoNCg0Kc29kaXVtX3Bsb3QNCg0KIyBPdXIgYm9kaWVzIG5lZWQgc29kaXVtOyBob3dldmVyLCB0aGVyZSBpcyBzbyBtdWNoIGluIG1vc3QgcHJvY2Vzc2VkIGZvb2RzLCBhbmQgdG9vIG11Y2ggc29kaXVtIGNhbiBoYXZlIHNldmVyYWwgbmVnYXRpdmUgZWZmZWN0cy4gQ2FubmVkIGZvb2RzIGFyZSBub3RvcmlvdXMgZm9yIGhhdmluZyBsb3RzIG9mIHNvZGl1bSwgYXMgYXJlIGJvdHRsZWQgc2F1Y2VzLCBzYWx0eSBzbmFja3MsIGFuZCBwcm9jZXNzZWQgZm9vZHMuIE1vc3QgbnV0cml0aW9uaXN0cyByZWNvbW1lbmQgd2F0Y2hpbmcgeW91ciBzb2RpdW0gaW50YWtlIGNhcmVmdWxseSBiZWNhdXNlIHRvbyBtdWNoIHNvZGl1bSBpbiB5b3VyIGRpZXQgaXMgZGFuZ2Vyb3VzLiBJdCBjYW4gbGVhZCB0byBoaWdoIGJsb29kIHByZXNzdXJlIGFuZCBtYW55IHJlbGF0ZWQgaGVhbHRoIGNvbmRpdGlvbnMuDQpgYGANCg0KDQoqKk1lbnUgQ2F0ZWdvcmllcyBncm91cGVkIGJ5IFRyYW5zIEZhdCoqDQpgYGB7cn0NCnRyYW5zX2ZhdCA8LSBtZW51ICU+JQ0KICBzZWxlY3QoQ2F0ZWdvcnksDQogICAgICAgICBUcmFucy5GYXQpICU+JQ0KICBncm91cF9ieShDYXRlZ29yeSkNCg0KdHJhbnNfcGxvdCA8LSB0cmFuc19mYXQgJT4lIA0KICBnZ3Bsb3QoYWVzKFRyYW5zLkZhdCwNCiAgICAgICAgICAgICBDYXRlZ29yeSwNCiAgICAgICAgICAgICBmaWxsID0gQ2F0ZWdvcnkpKSArIA0KICBnZW9tX2JveHBsb3QoKSArIHRoZW1lX2NsYXNzaWMoKSArICBnZ3RpdGxlKCJNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSB0cmFuc19mYXQgY29udGVudCIpDQoNCnRyYW5zX3Bsb3QNCg0KIyBJbiB0aGUgVW5pdGVkIFN0YXRlcywgdGhlIG1haW4gZGlldGFyeSBzb3VyY2Ugb2YgdHJhbnMgZmF0cyBpcyBwYXJ0aWFsbHkgaHlkcm9nZW5hdGVkIHZlZ2V0YWJsZSBvaWxzLCBwcmV2aW91c2x5IHVzZWQgaW4gbWFueSBjb21tZXJjaWFsbHkgcHJlcGFyZWQgZm9vZHMuIENvbnN1bWluZyB0cmFucyBmYXRzIG1heSBhZHZlcnNlbHkgYWZmZWN0IGNob2xlc3Rlcm9sIGxldmVscyBpbiB0aGUgYm9keSBhbmQgbWF5IGNvbnRyaWJ1dGUgdG8gdGhlIHJpc2sgb2YgYXRoZXJvc2NsZXJvc2lzLiBCZWNhdXNlIG9mIHRoaXMsIHRoZSBVUyBGb29kIGFuZCBEcnVnIEFkbWluaXN0cmF0aW9uIChGREEpIGhhcyBiYW5uZWQgdGhlIHVzZSBvZiB0cmFucyBmYXRzIGluIHByZXBhcmVkIGZvb2RzLg0KYGBgDQoNCg0KKipCeSBob3cgbXVjaCBkbyBQcm90ZWluLENhcmJvaHlkcmF0ZXMgYW5kIEZhdCBhZmZlY3QgdGhlIENhbG9yaWVzPyoqDQpgYGB7cn0NCmNhbG9yaWVzIDwtIG1lbnUgJT4lDQogIHNlbGVjdChDYWxvcmllcywNCiAgICAgICAgIENhcmJvaHlkcmF0ZXMsIA0KICAgICAgICAgUHJvdGVpbiwNCiAgICAgICAgIFRvdGFsLkZhdCkgJT4lIA0KICBncm91cF9ieShDYWxvcmllcykNCg0KY2Fsb3JpZXNfcGxvdCA8LSBnZ2NvcnIoY2Fsb3JpZXMsDQogICAgICAgbWV0aG9kID0gIGMoImV2ZXJ5dGhpbmciLCAicGVhcnNvbiIpLA0KICAgICAgIGxhYmVsID0gVFJVRSkgICsgdGhlbWVfY2xhc3NpYygpICsgIGdndGl0bGUoIkhvdyBQcm90ZWluLENhcmJvaHlkcmF0ZXMgYW5kIEZhdCBjb250cmlidXRlIHRvIENhbG9yaWVzPyIpDQoNCmNhbG9yaWVzX3Bsb3QNCg0KI0ZhdHMgYXJlIHRoZSBzbG93ZXN0IHNvdXJjZSBvZiBlbmVyZ3kgYnV0IHRoZSBtb3N0IGVuZXJneS1lZmZpY2llbnQgZm9ybSBvZiBmb29kLkJlY2F1c2UgZmF0cyBhcmUgc3VjaCBhbiBlZmZpY2llbnQgZm9ybSBvZiBlbmVyZ3ksIHRoZSBib2R5IHN0b3JlcyBhbnkgZXhjZXNzIGVuZXJneSBhcyBmYXQNCmBgYA0KDQppbg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1jRG9uYWxkJ3MgRURBIg0Kb3V0cHV0Og0KICBwZGZfZG9jdW1lbnQ6IGRlZmF1bHQNCiAgdG9jOiB0cnVlDQogIGh0bWxfZG9jdW1lbnQ6DQogICAgZGZfcHJpbnQ6IHBhZ2VkDQogIHRoZW1lOiBjZXJ1bGVhbg0KICBnaXRodWJfZG9jdW1lbnQ6DQogICAgZGZfcHJpbnQ6IHBhZ2VkDQogIHRvY19kZXB0aDogMw0KICB0b2NfZmxvYXQ6IHRydWUNCiAgaHRtbF9ub3RlYm9vazogZGVmYXVsdA0KLS0tDQoNClRoZSAgKEV4cGxvcmF0b3J5IERhdGEgQW5hbHlzaXMpIG9uIE1jRG9uYWxkJ3MgZGF0YSByZXZlYWxlZCBpbnNpZ2h0cyBpbnRvIGN1c3RvbWVycyBwdXJjaGFzaW5nIHBhdHRlcm5zLCBhbmQgbWVudSBwcmVmZXJlbmNlcy4gSXQgcHJvdmlkZXMgdmFsdWFibGUgaW5mb3JtYXRpb24gZm9yIGN1c3RvbWVycyB0byBtYWtlIGRlY2lzaW9ucyBvbiB0aGVpciBkaWV0YXJ5IHdhbnRzIGFuZCBhbHNvIHZhbHVhYmxlIGluZm9ybWF0aW9uIGZvciBzdHJhdGVnaWMgZGVjaXNpb24tbWFraW5nIGFuZCB0YXJnZXRlZCBtYXJrZXRpbmcgZWZmb3J0cy4NCg0KWW91IGNhbiBkb3dubG9hZCB0aGUgW2RhdGFzZXQgaGVyZV0oaHR0cHM6Ly93d3cua2FnZ2xlLmNvbS9kYXRhc2V0cy9tY2RvbmFsZHMvbnV0cml0aW9uLWZhY3RzL2RhdGEpDQoNCiMgUGFja2FnZXMNCipMb2FkIHRoZSBQYWNrYWdlcyBmb3IgZGF0YSBtYW5pcHVsYXRpb24gYW5kIHZpc3VhbGl6YXRpb24qDQoNCmBgYHtyfQ0KbGlicmFyeShkcGx5cikNCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShHR2FsbHkpDQpgYGANCioqKg0KKlJlYWQgaW4gdGhlIGRhdGEqDQoNCioqKioNCmBgYHtyfQ0KDQptZW51IDwtIHJlYWQuY3N2KCJtZW51LmNzdiIpDQoNCg0KYGBgDQoNCiMjIyBDYXRlZ29yeQ0KDQoNCioqKg0KVGhlIE1lbnUgQ2F0ZWdvcnkgaXMgZ3JvdXBlZCBhY2NvcmRpbmcgdG8gdGhlIHRvdGFsIG51bWJlciBmb29kIGl0ZW1zIGluIGVhY2ggQ2F0ZWdvcnkuDQoNCioqKg0KYGBge3J9DQpjYXQgPC0gbWVudSAlPiUgDQogIHNlbGVjdChDYXRlZ29yeSkgJT4lIA0KICBjb3VudChDYXRlZ29yeSxuYW1lID0gIlRvdGFsIikgICU+JSANCiAgZGlzdGluY3QoKQ0KDQpjYXRfcGxvdCA8LSBjYXQgJT4lIA0KICBnZ3Bsb3QoYWVzKENhdGVnb3J5LA0KICAgICAgICAgICAgIFRvdGFsLA0KICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsgDQogIGdlb21fY29sKCkgKyANCiAgdGhlbWVfY2xhc3NpYygpICsgDQogIGxhYnModGl0bGUgPSAiVG90YWwgQ2F0ZWdvcmllcyIpICsgDQogIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICJub25lIikgKyANCiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFRvdGFsKSwgDQogICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSwNCiAgICAgICAgICAgIGNvbG9yID0iYmxhY2siLCBzaXplID0gMykgKyBjb29yZF9mbGlwKCkNCg0KDQpjYXRfcGxvdA0KDQoNCg0KYGBgDQoNCg0KIyBQcm90ZWluDQoqKioNClByb3RlaW5zIGFyZSBtYWRlIHVwIG9mIGNoZW1pY2FsICdidWlsZGluZyBibG9ja3MnIGNhbGxlZCBhbWlubyBhY2lkcy4gWW91ciBib2R5IHVzZXMgYW1pbm8gYWNpZHMgdG8gYnVpbGQgYW5kIHJlcGFpciBtdXNjbGVzIGFuZCBib25lcyBhbmQgdG8gbWFrZSBob3Jtb25lcyBhbmQgZW56eW1lcy4gVGhleSBjYW4gYWxzbyBiZSB1c2VkIGFzIGFuIGVuZXJneSBzb3VyY2UuDQoNCioqKg0KIyMjIFRoZSBBdmVyYWdlIFByb3RlaW4gQ29udGVudCBpbiB0aGUgTWVudSBDYXRlZ29yeQ0KYGBge3J9DQpQcm9fYXZnIDwtIG1lbnUgJT4lIA0KICBzZWxlY3QoQ2F0ZWdvcnksSXRlbSxQcm90ZWluKSAlPiUgDQogIGdyb3VwX2J5KENhdGVnb3J5KSAlPiUNCiAgYWdncmVnYXRlKFByb3RlaW5+Q2F0ZWdvcnksIA0KICAgICAgICAgICAgRlVOID0gbWVhbikNCg0KUHJvX2F2Zw0KDQoNCg0KYGBgDQoNCg0KIyMjIFRoZSBNZW51IGl0ZW0gdGhhdCBjb250YWlucyB0aGUgaGlnaGVzdCBhbW91bnQgb2YgUHJvdGVpbiBjb250ZW50DQpgYGB7cn0NCm1heF9wcm8gPC0gbWVudSAlPiUgDQogIHNlbGVjdChJdGVtLFByb3RlaW4pICU+JSAgDQogIGdyb3VwX2J5KEl0ZW0pICU+JSANCiAgYXJyYW5nZShkZXNjKFByb3RlaW4pKSAlPiUgDQogIGhlYWQoMTUpICU+JSANCiAgZ2dwbG90KGFlcyh4PSByZW9yZGVyKEl0ZW0sIA0KICAgICAgICAgICAgICAgICAgICAgICAgUHJvdGVpbiksDQogICAgICAgICAgICAgZmlsbCA9IEl0ZW0pKSArIA0KICBnZW9tX2JhcihzdGF0ID0gImlkZW50aXR5IiwNCiAgICAgICAgICAgYWVzKHk9IFByb3RlaW4gKSkgKw0KICBjb29yZF9mbGlwKCkgKw0KICB0aGVtZV9idygpKyANCiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFByb3RlaW4sIA0KICAgICAgICAgICAgICAgIHk9IFByb3RlaW4pLA0KICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSksDQogICAgICAgICAgICBjb2xvciA9ICJCbGFjayIsDQogICAgICAgICAgICBzaXplID0gMykrDQogIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbj0ibm9uZSIpICsNCiAgZ2d0aXRsZSgiVE9QIDE1IE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggdGhlIEhpZ2hlc3QgUHJvdGVpbiBDb250ZW50IikgK3RoZW1lKHBhbmVsLmdyaWQubWFqb3IgPSBlbGVtZW50X2JsYW5rKCksIHBhbmVsLmdyaWQubWlub3IgPSBlbGVtZW50X2JsYW5rKCkpDQoNCm1heF9wcm8NCg0KDQpgYGANCg0KDQojIyMgV2hhdCBNZW51IGl0ZW0gdGhhdCBjb250YWlucyB0aGUgbGVhc3QgYW1vdW50IG9mIFByb3RlaW4gY29udGVudA0KYGBge3J9DQptaW5fcHJvIDwtIG1lbnUgJT4lIA0KICBzZWxlY3QoSXRlbSxQcm90ZWluKSAlPiUgIA0KICBncm91cF9ieShJdGVtLCBQcm90ZWluKSAlPiUgDQogIGZpbHRlcihQcm90ZWluID4wICklPiUgDQogIGFycmFuZ2UoUHJvdGVpbikgJT4lIA0KICBoZWFkKDE1KSAgJT4lIA0KICBnZ3Bsb3QoYWVzKHg9IHJlb3JkZXIoSXRlbSwgDQogICAgICAgICAgICAgICAgICAgICAgICBQcm90ZWluKSwNCiAgICAgICAgICAgICBmaWxsID0gSXRlbSkpICsgDQogIGdlb21fYmFyKHN0YXQgPSAiaWRlbnRpdHkiLA0KICAgICAgICAgICBhZXMoeT0gUHJvdGVpbiApKSArDQogIGNvb3JkX2ZsaXAoKSArDQogIHRoZW1lX2J3KCkrIA0KICBnZW9tX3RleHQoYWVzKGxhYmVsID0gUHJvdGVpbiwgDQogICAgICAgICAgICAgICAgeT0gUHJvdGVpbiksDQogICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSwNCiAgICAgICAgICAgIGNvbG9yID0gIkJsYWNrIiwNCiAgICAgICAgICAgIHNpemUgPSAzKSsNCiAgZ2d0aXRsZSgiVE9QIDEwIE1jRG9uYWxkJ3MgTWVudSBJdGVtIHdpdGggdGhlIExlYXN0IFByb3RlaW4iKSsNCiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uPSJub25lIikNCg0KbWluX3Bybw0KDQoNCmBgYA0KDQoNCiMgQ2Fsb3JpZXMNCioqKg0KQSBjYWxvcmllIGlzIGEgbWVhc3VyZSBvZiBlbmVyZ3kuIEZvb2RzIGhhdmUgY2Fsb3JpZXMuIFRoYXQgaXMsIGZvb2RzIHN1cHBseSB0aGUgYm9keSB3aXRoIGVuZXJneSwgd2hpY2ggaXMgcmVsZWFzZWQgd2hlbiBmb29kcyBhcmUgYnJva2VuIGRvd24gZHVyaW5nIGRpZ2VzdGlvbi4gRW5lcmd5IGVuYWJsZXMgY2VsbHMgdG8gZG8gYWxsIG9mIHRoZWlyIGZ1bmN0aW9ucywgaW5jbHVkaW5nIGJ1aWxkaW5nIHByb3RlaW5zIGFuZCBvdGhlciBzdWJzdGFuY2VzIG5lZWRlZCBieSB0aGUgYm9keS4gVGhlIGVuZXJneSBjYW4gYmUgdXNlZCBpbW1lZGlhdGVseSBvciBzdG9yZWQgZm9yIHVzZSBsYXRlci4NCg0KKioqDQoNCg0KIyMjIFRoZSBNZW51IENhdGVnb3J5IHJhbmtlZCBhY2NvcmRpbmcgdG8gdGhlaXIgQ2Fsb3JpZSBDb250ZW50DQpgYGB7cn0NCmNhbCA8LSBtZW51ICU+JSANCiAgc2VsZWN0KENhdGVnb3J5LA0KICAgICAgICAgSXRlbSwNCiAgICAgICAgIENhbG9yaWVzKSAlPiUgDQogIGdyb3VwX2J5KENhdGVnb3J5KSAgDQoNCg0KDQpjYWxfcGxvdCA8LSBjYWwgJT4lIA0KICBnZ3Bsb3QoYWVzKENhbG9yaWVzLA0KICAgICAgICAgICAgIENhdGVnb3J5LA0KICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsgDQogIGdlb21fYm94cGxvdCgpICsgDQogIHRoZW1lX2NsYXNzaWMoKSArIA0KICBzY2FsZV9maWxsX2JyZXdlcihwYWxldHRlID0gIlNldDEiKSArIGdndGl0bGUoIkNhbG9yaWUgQ29udGVudCBwZXIgTWVudSBDYXRlZ29yeSIpDQoNCmNhbF9wbG90DQoNCg0KYGBgDQoNCg0KDQojIyMgVGhlIFRvcCAxMCBNZW51IEZvb2QgaXRlbXMgd2l0aCBIaWdoIGNhbG9yaWVzIENvbnRlbnQNCmBgYHtyfQ0KbWF4X2NhbCA8LSBtZW51ICU+JSANCiAgc2VsZWN0KENhdGVnb3J5LA0KICAgICAgICAgSXRlbSwNCiAgICAgICAgIENhbG9yaWVzKSAlPiUgDQogIGdyb3VwX2J5KEl0ZW0pICU+JSANCiAgYXJyYW5nZShkZXNjKENhbG9yaWVzKSklPiUgDQogIGhlYWQoMTApJT4lIA0KICBnZ3Bsb3QoYWVzKENhbG9yaWVzLA0KICAgICAgICAgICAgIHkgPSByZW9yZGVyKEl0ZW0sDQogICAgICAgICAgICAgICAgICAgICAgICAgQ2Fsb3JpZXMpDQogICAgICAgICAgICAgLGZpbGwgPUl0ZW0pKSArIA0KICBnZW9tX2NvbCgpICsNCiAgdGhlbWVfY2xhc3NpYygpKw0KICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAibm9uZSIpICsgDQogIGdlb21fdGV4dChhZXMobGFiZWwgPSBDYWxvcmllcyksIA0KICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSksDQogICAgICAgICAgICBjb2xvcj0iYmxhY2siLCBzaXplID0zKSArIGdndGl0bGUoIlRPUCAxMCBNY0RvbmFsZCdzIE1lbnUgSXRlbSB3aXRoIHRoZSBIaWdoZXN0IENhbG9yaWUgQ29udGVudCIpDQoNCm1heF9jYWwNCg0KDQpgYGANCg0KIyMjIFRoZSBUb3AgMTAgTWVudSBGb29kIGl0ZW1zIHdpdGggTG93IGNhbG9yaWVzIENvbnRlbnQNCmBgYHtyfQ0KbWluX2NhbCA8LSBtZW51ICU+JQ0KICBzZWxlY3QoQ2F0ZWdvcnksDQogICAgICAgICBJdGVtLA0KICAgICAgICAgQ2Fsb3JpZXMpJT4lIA0KICBmaWx0ZXIoQ2Fsb3JpZXM+MCkgJT4lIA0KICBncm91cF9ieShJdGVtKSAlPiUgDQogIGFycmFuZ2UoQ2Fsb3JpZXMpJT4lIA0KICBoZWFkKDEwKSAlPiUgDQogIGdncGxvdChhZXMoQ2Fsb3JpZXMsDQogICAgICAgICAgICAgeSA9IHJlb3JkZXIoSXRlbSwNCiAgICAgICAgICAgICAgICAgICAgICAgICBDYWxvcmllcyksDQogICAgICAgICAgICAgZmlsbCA9SXRlbSkpICsgDQogIGdlb21fY29sKCkgKyANCiAgdGhlbWVfY2xhc3NpYygpKyANCiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gIm5vbmUiKSArIA0KICBnZW9tX3RleHQoYWVzKGxhYmVsID0gQ2Fsb3JpZXMpLCANCiAgICAgICAgICAgIHBvc2l0aW9uID0gcG9zaXRpb25fc3RhY2sodmp1c3QgPSAwLjUpLA0KICAgICAgICAgICAgY29sb3I9ImJsYWNrIiwgc2l6ZSA9MykgKw0KICBzY2FsZV9maWxsX2JyZXdlcihwYWxldHRlID0gIlNldDMiKSArIGdndGl0bGUoIlRPUCAxMCBNY0RvbmFsZCdzIE1lbnUgSXRlbSB3aXRoIExvdyBDYWxvcmllIENvbnRlbnQiKQ0KDQptaW5fY2FsDQoNCg0KDQpgYGANCg0KDQojIENhcmJveWRyYXRlcw0KKioqDQpDYXJib2h5ZHJhdGVzLCBvciBjYXJicywgYXJlIHRoZSBzdWdhcnMsIHN0YXJjaGVzLCBhbmQgZGlldGFyeSBmaWJlciB0aGF0IG9jY3VyIGluIGNlcnRhaW4gZm9vZHMuIFRoZSBib2R5IGJyZWFrcyB0aGVtIGRvd24gaW50byBnbHVjb3NlLCB3aGljaCBwcm92aWRlcyBlbmVyZ3kuDQoNCioqKg0KIyMjIFRoZSBNZW51IENhdGVnb3J5IHdpdGggdGhlIEhpZ2hlc3QgQ2FyYm9oeWRyYXRlcyBDb250ZW50DQpgYGB7cn0NCmNhcmIgPC0gbWVudSAlPiUgDQogIHNlbGVjdChDYXRlZ29yeSwNCiAgICAgICAgIEl0ZW0sDQogICAgICAgICBDYXJib2h5ZHJhdGVzKSU+JSANCiAgZ3JvdXBfYnkoQ2F0ZWdvcnkpIA0KDQpjYXJiX3Bsb3Q8LSBjYXJiICU+JQ0KICBnZ3Bsb3QoYWVzKENhdGVnb3J5LENhcmJvaHlkcmF0ZXMsIA0KICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsgDQogIGdlb21fYm94cGxvdCgpICsNCiAgc2NhbGVfZmlsbF9icmV3ZXIocGFsZXR0ZSA9ICJTZXQxIikgKyBjb29yZF9mbGlwKCkgKyB0aGVtZV9jbGFzc2ljKCkgKyBnZ3RpdGxlKCJNZW51IENhdGVnb3J5IHdpdGggdGhlIEhpZ2hlc3QgQ2FyYm9oeWRyYXRlcyBDb250ZW50IikNCg0KY2FyYl9wbG90DQoNCg0KYGBgDQoNCg0KIyMgU3VnYXINCioqKg0KU3VnYXIgYWxzbyBjYWxsZWQgc2ltcGxlIGNhcmJvaHlkcmF0ZXMgb2NjdXIgbmF0dXJhbGx5IGluIGZvb2RzLCBzdWNoIGFzIGRhaXJ5IHByb2R1Y3RzLCBhcyB3ZWxsIGFzIGFkZGVkIHN1Z2FyLCB3aGljaCBhcmUgY29tbW9uIGluIGJha2VkIGdvb2RzLCBzd2VldHMsIGFuZCBkZXNzZXJ0cy4gVGhlIGJvZHkgdmVyeSBlYXNpbHkgZGlnZXN0cyBhbmQgYWJzb3JicyBzdWdhci4NCg0KKioqDQoNCiMjIyBUaGUgVG9wIDEwIE1lbnUgRm9vZCBpdGVtcyB3aXRoIEhpZ2ggU3VnYXIgQ29udGVudA0KYGBge3J9DQpzdWdhciA8LSBtZW51ICU+JQ0KICBzZWxlY3QoQ2F0ZWdvcnksSXRlbSxTdWdhcnMpICU+JSANCiAgZ3JvdXBfYnkoQ2F0ZWdvcnkpDQoNCm1heF9zdWdhciA8LXN1Z2FyICU+JSANCiAgYXJyYW5nZShkZXNjKFN1Z2FycykpICU+JSANCiAgaGVhZCgxMCkgJT4lIA0KICBnZ3Bsb3QoYWVzKFN1Z2FycywNCiAgICAgICAgICAgICB5PXJlb3JkZXIoSXRlbSwNCiAgICAgICAgICAgICAgICAgICAgICAgU3VnYXJzKSwNCiAgICAgICAgICAgICBmaWxsID0gU3VnYXJzKSkgKw0KICBnZW9tX2NvbCgpICsgDQogIHRoZW1lX2NsYXNzaWMoKSsNCiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gIm5vbmUiKSArDQogIGdlb21fdGV4dChhZXMobGFiZWwgPSBTdWdhcnMpLA0KICAgICAgICAgICAgcG9zaXRpb24gPSBwb3NpdGlvbl9zdGFjayh2anVzdCA9IDAuNSkpICsgZ2d0aXRsZSgiVG9wIDEwIE1lbnUgaXRlbXMgd2l0aCB0aGUgSGlnaGVzdCBTdWdhciBDb250ZW50IikNCg0KDQptYXhfc3VnYXINCg0KDQpgYGANCg0KDQojIyMgVGhlIFRvcCAxMCBNZW51IEZvb2QgaXRlbXMgd2l0aCBMb3cgU3VnYXIgQ29udGVudA0KYGBge3J9DQptaW5fc3VnYXIgPC0gc3VnYXIgJT4lIA0KICBmaWx0ZXIoU3VnYXJzPjApICU+JSANCiAgYXJyYW5nZShTdWdhcnMpICU+JSANCiAgaGVhZCgxMCkgJT4lIA0KICBnZ3Bsb3QoYWVzKFN1Z2FycywgDQogICAgICAgICAgICAgeT1yZW9yZGVyKEl0ZW0sDQogICAgICAgICAgICAgICAgICAgICAgIFN1Z2FycyksDQogICAgICAgICAgICAgZmlsbCA9IFN1Z2FycykpICsNCiAgZ2VvbV9jb2woKSArIA0KICB0aGVtZV9jbGFzc2ljKCkrDQogIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICJub25lIikgKyANCiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFN1Z2FycyksDQogICAgICAgICAgICBwb3NpdGlvbiA9IHBvc2l0aW9uX3N0YWNrKHZqdXN0ID0gMC41KSkgKyBnZ3RpdGxlKCJUb3AgMTAgTWVudSBpdGVtcyB3aXRoIHRoZSBMb3dlc3Qgc3VnYXIgQ29udGVudCIpDQoNCg0KbWluX3N1Z2FyDQoNCg0KYGBgDQoNCg0KDQojIyMgVGhlIE1lbnUgQ2F0ZWdvcmllcyB3aXRoIENhcmJvaHlkcmF0ZXMgdGhhdCBoYXZlIGEgaGlnaGVyIEZpYnJlIHRvIFN1Z2FyIFJhdGlvKEhlYWx0aHkgQ2FyYnMpDQoqKioNCkFzIGEgZ2VuZXJhbCBydWxlLCB0aGUgbW9yZSBmaWJlciBhbmQgdGhlIGxlc3Mgc3VnYXIgdGhlcmUgaXMgaW4gdGhlIGNhcmJvaHlkcmF0ZSwgdGhlIGJldHRlciBpdCBpcyBmb3IgeW91ciBib2R5Lg0KDQoqKioNCmBgYHtyfQ0KaGVhbHRoeV9jYXJicyA8LSAgbWVudSAlPiUgDQogIHNlbGVjdChDYXJib2h5ZHJhdGVzLA0KICAgICAgICAgQ2F0ZWdvcnksDQogICAgICAgICBTdWdhcnMsDQogICAgICAgICBEaWV0YXJ5LkZpYmVyKSAgJT4lICANCiAgZmlsdGVyKERpZXRhcnkuRmliZXIgPiBTdWdhcnMpDQoNCmhlYWx0aHlfY2FyYnNfcGxvdCA8LSBoZWFsdGh5X2NhcmJzICU+JSANCiAgZ2dwbG90KGFlcyhDYXJib2h5ZHJhdGVzLA0KICAgICAgICAgICAgIHkgPSByZW9yZGVyKENhdGVnb3J5LENhcmJvaHlkcmF0ZXMpLA0KICAgICAgICAgICAgIGZpbGwgPSBDYXRlZ29yeSkpICsNCiAgZ2VvbV9ib3hwbG90KCkgKyBnZ3RpdGxlKCJIZWFsdGh5IENhcmJzIikgKyB0aGVtZV9jbGFzc2ljKCkNCg0KDQoNCmhlYWx0aHlfY2FyYnNfcGxvdA0KDQoNCmBgYA0KDQoNCg0KIyMjIFRoZSBNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSBzb2RpdW0gY29udGVudA0KKioqDQpPdXIgYm9kaWVzIG5lZWQgc29kaXVtOyBob3dldmVyLCB0aGVyZSBpcyBzbyBtdWNoIGluIG1vc3QgcHJvY2Vzc2VkIGZvb2RzLCBhbmQgdG9vIG11Y2ggc29kaXVtIGNhbiBoYXZlIHNldmVyYWwgbmVnYXRpdmUgZWZmZWN0cy4gQ2FubmVkIGZvb2RzIGFyZSBub3RvcmlvdXMgZm9yIGhhdmluZyBsb3RzIG9mIHNvZGl1bSwgYXMgYXJlIGJvdHRsZWQgc2F1Y2VzLCBzYWx0eSBzbmFja3MsIGFuZCBwcm9jZXNzZWQgZm9vZHMuIE1vc3QgbnV0cml0aW9uaXN0cyByZWNvbW1lbmQgd2F0Y2hpbmcgeW91ciBzb2RpdW0gaW50YWtlIGNhcmVmdWxseSBiZWNhdXNlIHRvbyBtdWNoIHNvZGl1bSBpbiB5b3VyIGRpZXQgaXMgZGFuZ2Vyb3VzLiBJdCBjYW4gbGVhZCB0byBoaWdoIGJsb29kIHByZXNzdXJlIGFuZCBtYW55IHJlbGF0ZWQgaGVhbHRoIGNvbmRpdGlvbnMuDQoNCioqKg0KYGBge3J9DQpzb2RpdW0gIDwtIG1lbnUgJT4lDQogIHNlbGVjdChDYXRlZ29yeSwNCiAgICAgICAgIEl0ZW0sU29kaXVtLA0KICAgICAgICAgU29kaXVtLi4uLkRhaWx5LlZhbHVlLikgJT4lIA0KICBncm91cF9ieShDYXRlZ29yeSkNCg0KDQpzb2RpdW1fcGxvdCA8LSBzb2RpdW0gJT4lIA0KICBnZ3Bsb3QoYWVzKFNvZGl1bSwNCiAgICAgICAgICAgICBDYXRlZ29yeSwNCiAgICAgICAgICAgICBmaWxsID0gQ2F0ZWdvcnkpKSArDQogIGdlb21fYm94cGxvdCgpICsgdGhlbWVfY2xhc3NpYygpICsgZ2d0aXRsZSgiTWVudSBDYXRlZ29yaWVzIGdyb3VwZWQgYnkgc29kaXVtIGNvbnRlbnQiKQ0KDQoNCnNvZGl1bV9wbG90DQoNCg0KYGBgDQoNCg0KIyMjIFRoZSBNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSBUcmFucyBGYXQNCioqKg0KSW4gdGhlIFVuaXRlZCBTdGF0ZXMsIHRoZSBtYWluIGRpZXRhcnkgc291cmNlIG9mIHRyYW5zIGZhdHMgaXMgcGFydGlhbGx5IGh5ZHJvZ2VuYXRlZCB2ZWdldGFibGUgb2lscywgcHJldmlvdXNseSB1c2VkIGluIG1hbnkgY29tbWVyY2lhbGx5IHByZXBhcmVkIGZvb2RzLiBDb25zdW1pbmcgdHJhbnMgZmF0cyBtYXkgYWR2ZXJzZWx5IGFmZmVjdCBjaG9sZXN0ZXJvbCBsZXZlbHMgaW4gdGhlIGJvZHkgYW5kIG1heSBjb250cmlidXRlIHRvIHRoZSByaXNrIG9mIGF0aGVyb3NjbGVyb3Npcy4gQmVjYXVzZSBvZiB0aGlzLCB0aGUgVVMgRm9vZCBhbmQgRHJ1ZyBBZG1pbmlzdHJhdGlvbiAoRkRBKSBoYXMgYmFubmVkIHRoZSB1c2Ugb2YgdHJhbnMgZmF0cyBpbiBwcmVwYXJlZCBmb29kcy4NCg0KKioqDQpgYGB7cn0NCnRyYW5zX2ZhdCA8LSBtZW51ICU+JQ0KICBzZWxlY3QoQ2F0ZWdvcnksDQogICAgICAgICBUcmFucy5GYXQpICU+JQ0KICBncm91cF9ieShDYXRlZ29yeSkNCg0KdHJhbnNfcGxvdCA8LSB0cmFuc19mYXQgJT4lIA0KICBnZ3Bsb3QoYWVzKFRyYW5zLkZhdCwNCiAgICAgICAgICAgICBDYXRlZ29yeSwNCiAgICAgICAgICAgICBmaWxsID0gQ2F0ZWdvcnkpKSArIA0KICBnZW9tX2JveHBsb3QoKSArIHRoZW1lX2NsYXNzaWMoKSArICBnZ3RpdGxlKCJNZW51IENhdGVnb3JpZXMgZ3JvdXBlZCBieSB0cmFuc19mYXQgY29udGVudCIpDQoNCnRyYW5zX3Bsb3QNCg0KYGBgDQoNCg0KIyMjIFRoZSBDb3JyZWxhdGlvbiBiZXR3ZWVuIFByb3RlaW4sQ2FyYm9oeWRyYXRlcywgRmF0IGFuZCBDYWxvcmllcw0KKioqDQpGYXRzIGFyZSB0aGUgc2xvd2VzdCBzb3VyY2Ugb2YgZW5lcmd5IGJ1dCB0aGUgbW9zdCBlbmVyZ3ktZWZmaWNpZW50IGZvcm0gb2YgZm9vZC5CZWNhdXNlIGZhdHMgYXJlIHN1Y2ggYW4gZWZmaWNpZW50IGZvcm0gb2YgZW5lcmd5LCB0aGUgYm9keSBzdG9yZXMgYW55IGV4Y2VzcyBlbmVyZ3kgYXMgZmF0Lg0KDQoqKioNCg0KYGBge3J9DQpjYWxvcmllcyA8LSBtZW51ICU+JQ0KICBzZWxlY3QoQ2Fsb3JpZXMsDQogICAgICAgICBDYXJib2h5ZHJhdGVzLCANCiAgICAgICAgIFByb3RlaW4sDQogICAgICAgICBUb3RhbC5GYXQpICU+JSANCiAgZ3JvdXBfYnkoQ2Fsb3JpZXMpDQoNCmNhbG9yaWVzX3Bsb3QgPC0gZ2djb3JyKGNhbG9yaWVzLA0KICAgICAgIG1ldGhvZCA9ICBjKCJldmVyeXRoaW5nIiwgInBlYXJzb24iKSwNCiAgICAgICBsYWJlbCA9IFRSVUUpICArIHRoZW1lX2NsYXNzaWMoKSArICBnZ3RpdGxlKCJDb3JyZWxhdGlvbiBvZiBDYWxvcmllcyBhbmQgTWFjcm8tTnV0cmllbnRzIikNCg0KY2Fsb3JpZXNfcGxvdA0KDQoNCmBgYA==</div>
 
 
 
